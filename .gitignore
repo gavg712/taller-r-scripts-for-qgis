@@ -1,0 +1,5 @@
+*.Rproj
+.hugo_build.lock
+.Rhistory
+./public
+.Rproj.user
