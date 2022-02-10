@@ -1,0 +1,31 @@
+---
+title: " Tutorial outline"
+author: "Gabo Gaona & Antony Barja"
+date: 2020-12-01T21:13:14-05:00
+tags: ["R", "QGIS"]
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(collapse = TRUE)
+```
+
+### 1.1 Contents
+
+<center><img src="https://user-images.githubusercontent.com/23284899/152171996-54afdafa-4456-4d63-9c92-dca515b100a8.png" width="80%"></center>
+
+### 1.2 Outline
+
+- Ejercicio 1: QGIS Processing R Provider.
+- Ejercicio 2: Editar un script de la caja de herramientas
+- Ejercicio 3: Escribiendo nuestro propio script desde Cero
+- Ejercicio 4: Escribiendo documentación a nuestro script
+- Ejercicio 5: Tipos de salidas no espaciales
+- Especificación avanzada
+- Compartiendo los scripts
+
+### General instructions
+
+
+
+
+

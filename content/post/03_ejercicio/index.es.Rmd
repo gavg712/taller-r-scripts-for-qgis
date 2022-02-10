@@ -1,0 +1,9 @@
+---
+title: "2. Ejercicio - 02"
+author: "Gabo Gaona & Antony Barja"
+date: 2020-12-01T21:13:14-05:00
+tags: ["R","QGIS"]
+---
+
+### 2.1 Introduction
+
