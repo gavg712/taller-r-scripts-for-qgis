@@ -3,9 +3,3 @@
 .Rhistory
 ./public
 .Rproj.user
-content/post/**/*.html
-content/post/**/*_files
-content/demos/**/*.html
-content/demos/**/*_files
-static/post
-static/rmarkdown-libs
