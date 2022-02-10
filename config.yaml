@@ -3,6 +3,6 @@ copyright: Copyright © 2022, Antony Barja; all rights reserved.
 paginate: 10
 theme: hugo-clarity
 #disqusShortname: ''
-DefaultContentLanguage: en
+DefaultContentLanguage: es
 taxonomies:
   tag: tags

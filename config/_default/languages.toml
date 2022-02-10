@@ -1,4 +1,9 @@
+[es]
+  title = "r-qgis"
+  LanguageName = "Español"
+  weight = 1
+  
 [en]
   title = "r-qgis"
-  LanguageName = "Spanish"
-  weight = 1
+  LanguageName = "English"
+  weight = 2

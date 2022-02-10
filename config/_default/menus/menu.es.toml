@@ -1,10 +1,10 @@
 [[main]]
-  name = "Home"
+  name = "Inicio"
   url = "/"
   weight = -111
 
 [[main]]
-  name = "Installation"
+  name = "Instalación"
   url = "installation"
   weight = -110
 
@@ -14,7 +14,7 @@
   weight = -108
 
 [[main]]
-  name = "About"
+  name = "Acerca de nosotros"
   url = "about/"
   weight = -107
   
