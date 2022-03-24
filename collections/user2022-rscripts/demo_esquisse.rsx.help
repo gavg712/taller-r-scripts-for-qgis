@@ -1,0 +1,7 @@
+{
+"ALG_DESC": "Explore your data ussing <b>esquisse</b> a GUI for ggplot2.<b>NONE</b> Qgis processing output is used",
+"ALG_CREATOR": "gavg712 and esquisse Team",
+"ALG_HELP_CREATOR": "gavg712 and esquisse Team",
+"Layer": "A vector layer with at least one attribute.",
+"Language": "Translation language for the GUI"
+}
