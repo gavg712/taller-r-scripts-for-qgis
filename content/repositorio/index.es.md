@@ -30,4 +30,5 @@ git commit -m "<nombre del script>"
 git push
 ```
 
-3. Haz un PR desde tu cuenta al repositorio del taller
+3. Haz un _Pull Request_ desde tu fork al repositorio del taller
+
