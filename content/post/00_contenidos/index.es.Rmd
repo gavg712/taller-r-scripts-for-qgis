@@ -27,6 +27,10 @@ lenguaje R.
 - **Idioma**: Español
 - **Modalidad**: Virtual 
 
+### Objetivo
+
+Aprender cómo escribir y agregar nuevas herramientas a la caja de procesos de QGIS mediante el lenguaje de programación de R.
+
 ### Agenda
 
 |Tema|Duración|Links|Responsable|
