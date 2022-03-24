@@ -1,0 +1,5 @@
+.Rhistory
+.Rproj.user
+.hugo_build*
+documentos
+*.Rproj
