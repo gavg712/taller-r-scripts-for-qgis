@@ -1,4 +1,4 @@
-##Demo=group
+##Taller UseR!2022=group
 ##esquisse=name
 ##Making a ggplot2 interactively=display_name
 ##Layer=vector
