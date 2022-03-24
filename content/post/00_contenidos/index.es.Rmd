@@ -13,18 +13,35 @@ knitr::opts_chunk$set(collapse = TRUE)
 
 <center><img src="https://user-images.githubusercontent.com/23284899/152171996-54afdafa-4456-4d63-9c92-dca515b100a8.png" width="80%"></center>
 
-QGIS es un sistema de información geográfico de código abierto y amigable con el usuario. Es un proyecto oficial de la Open Source Geospatial Foundation (OSGeo). Se puede usar tanto en Linux, Unix, MacOSX Windows y Android. Y gracias a su integración con GDAL soporta numerosos formatos y funcionalidades de vectores, rasters y bases de datos espaciales.
+Bienvenid`[a|e|o]`s, 
+
+Somos Gabo Gaona (Ecuador) y Antony Barja (Perú) y hemos preparado este tutorial
+para mostrar un poco del complemento _Processing R Provider_ y cómo puede ser de 
+utilidad para usuarios de R y QGIS. Este tiempo que compartiremos juntos 
+intentaremos construir algoritmos para la caja de herramientas de Processing de 
+QGIS. Esperamos que al término de este tutorial ustedes hayan adquirido las 
+destrezas suficientes para escribir sus propias herramientas para QGIS usando 
+lenguaje R.
+
+- **Duración**: 2.5 horas
+- **Idioma**: Español
+- **Modalidad**: Virtual 
 
 ### Agenda
 
+|Tema|Duración|Links|Responsable|
+|:---|:---:|:---:|:---|
+|Bienvenida e introducción |10 min||Gabo y Antony|
+|Instalación y configuración de Qgis Processing R |20 min|[Ver documentos](../../installation)|Antony Barja|
+|Tu primera herramienta de QGIS hecha con R |15 min|[Ver documentos](../02_ejercicio)|Gabo Gaona|
+|Documentando Rscripts para QGIS |15 min|[Ver documentos](../03_ejercicio)|Gabo y Antony|
+|Herramientas para datos no espaciales |20 min|[Ver documentos](../04_ejercicio)|Gabo y Antony|
+|Configuración avanzada  “de novato a pro” |20 min|[Ver documentos](../05_ejercicio)|Gabo y Antony|
+|Compartiendo tu herramienta a la comunidad de QGIS |20 min|[Ver documentos](../06_ejercicio)|Gabo y Antony|
+|Probando scripts de estudiantes |10 min|[Ver documentos](../07_ejercicio)|Gabo y Antony|
+|Conclusión y despedida |10 min|[Ver documentos](../despedida)|Gabo y Antony|
 
-- Ejercicio 1: QGIS Processing R Provider.
-- Ejercicio 2: Editar un script de la caja de herramientas
-- Ejercicio 3: Escribiendo nuestro propio script desde Cero
-- Ejercicio 4: Escribiendo documentación a nuestro script
-- Ejercicio 5: Tipos de salidas no espaciales
-- Especificación avanzada
-- Compartiendo los scripts
+
 
 
 
