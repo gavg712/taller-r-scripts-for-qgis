@@ -1,5 +1,6 @@
 ##Taller UseR!2022=group
-##Min_Max=name
+##MinMax=name
+##Mínimo y Máximo=display_name
 ##Layer=vector
 ##Field=Field Layer
 ##Min=output number
