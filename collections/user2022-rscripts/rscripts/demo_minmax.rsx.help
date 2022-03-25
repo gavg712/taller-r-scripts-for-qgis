@@ -3,8 +3,8 @@
 "ALG_CREATOR": "QGIS Processing R contributors",
 "ALG_HELP_CREATOR": "gavg712",
 "Layer": "A vector layer with at least one attribute.",
-"Field": "Numeric field Layer"
-"Min": "Min value number"
-"Max": "Max value number"
+"Field": "Numeric field Layer",
+"Min": "Min value number",
+"Max": "Max value number",
 "Summary": "String that contains the min -  max values."
 }
