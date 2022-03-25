@@ -21,7 +21,7 @@ Les invitamos a compartir sus herramientas mediante una PR a la rama principal d
 cd <directorio de trabajo>
 git clone https://github.com/<usuario>/taller-r-scripts-for-qgis.git
 ```
-3. Agrega los ficheros que quieras compartir (`*.rsx`, `*rsx.help`) y comenta en el ídice de git
+3. Agrega los ficheros que quieras compartir (`*.rsx`, `*rsx.help`) al directorio `collections/user2022-rscripts/rscripts` y registra el cambio en el índice de git.
 
 ```bash
 cd taller-r-scripts-for-qgis
@@ -30,5 +30,6 @@ git commit -m "<nombre del script>"
 git push
 ```
 
-3. Haz un _Pull Request_ desde tu fork al repositorio del taller
+4. Haz un _Pull Request_ desde tu fork al repositorio del taller
 
+![](repository_pr.png)
