@@ -24,9 +24,19 @@ para el trabajo de datos geográficos de forma computacional (**geocomputación*
 
 ### 🔵 **Docentes** 🏫
 
-* 🧔🏻 __Gabo Gaona__ <br> (**Líder de [RSpacial en español](), Científico de datos**)
+<table class="default" align="center">
+  <tr align="center">
+    <td><img src="https://user-images.githubusercontent.com/23284899/153223544-5747198e-25db-47b2-b7bd-f17774bf07c4.png" width='100px' align='center'></td>
+    <td><img src="https://user-images.githubusercontent.com/23284899/151292854-47fbdc8b-f947-46ed-8af1-853a3f2d6d30.png" width='100px' align='center'></td>
+  </tr>
 
-* 👨🏽 [__Antony Barja__]()<br> (**Líder de [QGIS Perú](), Científico en formación dentro de [Healthinnovation Lab]()**)
+  <tr align="center">
+    <td>Líder de RSpacial en español<br>Científico de datos</td>
+    <td>Líder de QGIS Perú <br> Científico de datos en formación</td>
+  </tr>
+
+</table>
+
 
 ### 🔵 **Cronograma** 🕐
 
@@ -48,7 +58,7 @@ gantt
     section Gabo y Antony
     Documentando Rscripts para QGIS: des4,after des3, 15m
     
-    section Gabo
+    section Gabo Ganoa
     Herramientas para datos no espaciales: des5,after des4, 20m
     Configuración avanzada “de novato a pro” : des6, after des5, 20m
     
