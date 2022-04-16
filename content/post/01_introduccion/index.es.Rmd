@@ -11,9 +11,32 @@ knitr::opts_chunk$set(collapse = TRUE)
 
 ### 1.1 ¿Qué es QGIS?
 
-<center><img src="https://user-images.githubusercontent.com/23284899/152171996-54afdafa-4456-4d63-9c92-dca515b100a8.png" width="80%"></center>
+<center><img src="https://ambarja.github.io/qgis-geogis/Sesi%C3%B3n01/img/qgis.gif" width="80%"></center>
 
-QGIS es un sistema de información geográfico de código abierto y amigable con el usuario. Es un proyecto oficial de la Open Source Geospatial Foundation (OSGeo). Se puede usar tanto en Linux, Unix, MacOSX Windows y Android. Y gracias a su integración con GDAL soporta numerosos formatos y funcionalidades de vectores, rasters y bases de datos espaciales.
+Es un software de Sistema de Información Geográfica (SIG) libre y de código abierto que permite a los usuarios **crear**, **editar**, **visualizar**, **analizar** y **publicar** información geoespacial (www.qgis.org).
+
+### 1.2 Características: 
+
+- Presenta una interfaz gráfica de usuario (`GUI`) muy amigable.
+- Interoperabilidad con otros software open source (`SAGA`, `GRASS`, `R`, entre otros)
+- Proyecto oficial de la Open Source Geospatial Foundation (`OSGeo`).
+- Se puede usar el multiples sistemas operativos como una distribución de GNU/Linux, Unix, MacOSX, Windows y Android.
+- Soporta multiples formatos en datos vectoriales y raster (`GDAL`).
+- Presenta una variedad de plugins para temáticas específicas.
+    <table class="default" align="center">
+      <tr align="center">
+        <td style='background:blue;color:white;'><b>Plugins oficiales</b></td>
+        <td style='background:blue;color:white;'><b>Plugins experimentales</b></td>
+      </tr>
+      <tr align="center">
+        <td><b>859</b></td>
+        <td><b>231</b></td>
+      </tr>
+    </table>
+
+- Presenta una comunidad académica y científica muy dinámica.
+  
+  <img src="./static/images/user_group.svg" width='500px'/>
 
 ### 1.2 Objectivo del tutorial:
 
