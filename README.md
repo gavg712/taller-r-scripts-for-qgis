@@ -46,7 +46,7 @@ para el trabajo de datos geográficos de forma computacional (**geocomputación*
       <a href="#"><img border="0" alt="Email" src="https://assets.dryicons.com/uploads/icon/svg/8009/02dc3a5c-6504-4347-85fb-3f510cfecc45.svg" width="35" height="35"></a>&nbsp;&nbsp;&nbsp;
       <a href="#"><img border="0" alt="Twitter" src="https://assets.dryicons.com/uploads/icon/svg/8385/c23f7ffc-ca8d-4246-8978-ce9f6d5bcc99.svg" width="35" height="35"></a>&nbsp;&nbsp;&nbsp;
       <a href="#"><img border="0" alt="LinkedIn" src="https://assets.dryicons.com/uploads/icon/svg/8337/a347cd89-1662-4421-be90-58e5e8004eae.svg" width="35" height="35"></a>&nbsp;&nbsp;&nbsp;
-      <a href="#"><img border="0" alt="BuyMeACoffee" src="https://www.buymeacoffee.com/assets/img/guidelines/logo-mark-3.svg" width="35" height="35"></a>
+      <a href="#"><img border="0" alt="BuyMeACoffee" src="https://user-images.githubusercontent.com/23284899/163662071-ad32c5e8-139f-4563-80f6-9fa74959422d.jpg" width="35" height="35"></a>
     </td>
     <td>
       <a href="mailto:antony.barja8@gmail.com"><img border="0" alt="Email" src="https://assets.dryicons.com/uploads/icon/svg/8009/02dc3a5c-6504-4347-85fb-3f510cfecc45.svg" width="35" height="35"></a>&nbsp;&nbsp;&nbsp;
