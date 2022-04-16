@@ -95,3 +95,7 @@ gantt
 * ⏳ 2️.5 horas
 
 ### 🔵 **Referencias**
+
+- *Hadley Wickham and Garret Grolemund,R for data Science,2017, https://github.com/hadley/r4ds*
+- *Robin Lovelace, Jakub Nowosad, Jannes Muenchow,Geocomputation with R,2017,https://geocompr.robinlovelace.net/* 
+- *Healthinnovation,Google Earth Engine for spatial epidemiology,2022,https://epi-rgee.netlify.app/*
