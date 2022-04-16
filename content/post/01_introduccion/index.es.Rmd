@@ -35,8 +35,7 @@ Es un software de Sistema de Información Geográfica (SIG) libre y de código a
     </table>
 
 - Presenta una comunidad académica y científica muy dinámica.
-  
-  <img src="./static/images/user_group.svg" width='500px'/>
+<p align='center'><img src="https://raw.githubusercontent.com/gavg712/taller-r-scripts-for-qgis/72c750c017358e54562634668c266831889678be/static/images/user_group.svg" width='600px'/></p>
 
 ### 1.2 Objectivo del tutorial:
 
