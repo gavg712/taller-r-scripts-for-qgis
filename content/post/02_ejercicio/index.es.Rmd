@@ -7,9 +7,102 @@ tags: ["R","QGIS"]
 
 ### Introducción
 
+Un script R para _Processing R Provider_ no es diferente que un script normal de R. Las pequeñas diferencias entre ambos son simplemente estructuras lógicas para que el complemento en QGIS pueda interpretarlos correctamente. A continuación se enlistan las particularidades de los R scripts para QGIS:
+
+- Tienen la extensión `.rsx` y pueden estar acompañados de un fichero de ayuda de extensión `.rsx.help`.
+- Tienen por lo menos dos secciones importantes, un encabezado y un cuerpo, que se repasan en un sección posterior.
+- Tanto el `.rsx` como el `.rsx.help` deben estar en un directorio predefinido en la configuración del complemento.
+
+Todas las instrucciones de R que se escriban en el script serán internamente reescritas en un Rscript (`.r`|`.R`) temporal que será ejecutado en la consola de R.
+
 ### Estructura de un script
 
+Un script R para _processing_ tiene dos partes principales. Un **encabezado** que contiene la configuración de la herramienta; y un **cuerpo** que contiene el código R que ejecutará el proceso. El ejemplo que estudiaremos a continuación es tomado de los scripts incorporados en la instalación del complemento _Processing R provider_
+
+```r
+##Example scripts=group
+##Scatterplot=name
+##Layer=vector
+##X=Field Layer
+##Y=Field Layer
+##output_plots_to_html
+
+# simple scatterplot
+plot(Layer[[X]], Layer[[Y]])
+```
+
+Las líneas que empiezan con doble signo numeral (`##`) conforman el encabezado del script. Por ejemplo:  `##Layer=vector`. Debe diferenciarse las líneas de encabezado (`##`) y de las líneas de comentarios (`#`) de modo que no causen confusión al algoritmo de _Processing R  Prvider_. En tal caso, para los comentarios se recomienda usar un solo signo numeral `#` cuando este empieza en una línea nueva: Por ejemplo `# simple scatterplot`.
+
+Las líneas de encabezado serán internamente convertidas en instrucciones de distintos tipos para que funcionen correctamente como una herramienta. Estas líneas condicionarán la estructura de la interfaz de la herramienta y el comportamiento de la misma. 
+
+Una línea de encabezado está conformada por dos partes: Identificador y Tipo.
+
+```r
+##nombre_parametro=tipo [valor_por_defecto/desde_variable]
+```
+
+...del script anterior podemos tomar cualquiera de las cinco primeras líneas como ejemplo, y veremos que tiene la estructura mencionada. Sin embargo algunos parámetros del encabezado pueden estar conformados simplemente por una etiqueta (por ejemplo `##output_plots_to_html`) que se usan internamente para indicar comportamientos específicos de la herramienta. Más detalles se verá en una sección posterior.
+
+Los comentarios y las demás instrucciones de R no forman parte del encabezado, por lo tanto serán consideradas como cuerpo del script. Estas líneas serán transcritas a un Rscript temporal, que será ejecutado línea por línea en la consola de R, mediante un subproceso stdin/stdout. 
+
+
 ### Tipos de parámetros
+
+El encabezado puede contener distintos tipos de parámetros. Y de acuerdo con ellos la herramienta se comportará de una forma u otra:
+
+#### Metadatos
+
+Son parámetros que permiten organizar el script en el índice de processing. Entre ellos tenemos:
+
+- `name` Permite definir un nombre corto para el script
+- `display_name` Permite definir un nombre largo para el script. Este se mostrará en el índice y en la barra de título de la herramienta
+- `group` nombre del grupo al que pertenece el script. Permite organizar la nueva herramienta como parte de un grupo específico de herramientas.
+
+```r
+##Example scripts=group
+##Scatterplot=name
+##Scatterplot from selected fields=display_name
+```
+
+#### Parámetros de comportamiento
+
+Sirven para definir el comportamiento general del script. Estos parámetros se configuran en el encabezado, pero el usuario no interactúa con estos. Entre ellos tenemos
+
+- `output_plots_to_html`
+- `load_raster_using_rgdal`
+- `load_vector_using_rgdal`
+- `pass_filenames`
+- `dont_load_any_packages`
+- `github_install`
+- `expression`
+
+#### Parámetros de entrada
+
+Estas líneas de parámetros especifican la apariencia de la interfaz del script. A partir de la estructura básica `##nombre_parametro=tipo [valor_por_defecto/desde_variable]` podemos destacar que `nombre_parámetro` será el nombre del objeto que contenga esa variable en la sesión de R. Mientras que `tipo` será el tipo de datos de entrada, de los posibles tipos de entrada (vector, raster, table, number, string, boolean, Field).
+
+```{r, echo=FALSE}
+tibble::tribble(
+          ~Parámetro, ~`Valor por defecto`,        ~`Desde variable`,
+          "`vector`",               "Si",                   "No",
+          "`raster`",               "Si",                   "No",
+           "`table`",               "Si",                   "No",
+          "`number`",               "Si",                   "No",
+          "`string`",               "Si",                   "No",
+         "`boolean`",               "Si",                   "No",
+           "`Field`",               "No", "definida en `vector`",
+           "`color`",               "Si",                   "No",
+           "`range`",               "Si",                   "No",
+        "`datetime`",               "Si",                   "No",
+            "`Band`",               "No", "definida en `raster`",
+          "`extent`",               "No",                   "No",
+             "`crs`",               "No",                   "No",
+            "`enum`",               "No",                   "No",
+    "`enum literal`",               "No",                   "No"
+    ) |> 
+    knitr::kable(caption = "Parámetros y referencias a otros parámetros") |> 
+    kableExtra::kable_styling(full_width = FALSE)
+```
+
 
 ### Ejercicio
 

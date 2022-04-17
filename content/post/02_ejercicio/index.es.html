@@ -5,17 +5,256 @@ date: 2020-12-01T21:13:14-05:00
 tags: ["R","QGIS"]
 ---
 
-<script src="{{< blogdown/postref >}}index.es_files/header-attrs/header-attrs.js"></script>
+<script src="{{< blogdown/postref >}}index.es_files/kePrint/kePrint.js"></script>
+<link href="{{< blogdown/postref >}}index.es_files/lightable/lightable.css" rel="stylesheet" />
 
 
 <div id="introducción" class="section level3">
 <h3>Introducción</h3>
+<p>Un script R para <em>Processing R Provider</em> no es diferente que un script normal de R. Las pequeñas diferencias entre ambos son simplemente estructuras lógicas para que el complemento en QGIS pueda interpretarlos correctamente. A continuación se enlistan las particularidades de los R scripts para QGIS:</p>
+<ul>
+<li>Tienen la extensión <code>.rsx</code> y pueden estar acompañados de un fichero de ayuda de extensión <code>.rsx.help</code>.</li>
+<li>Tienen por lo menos dos secciones importantes, un encabezado y un cuerpo, que se repasan en un sección posterior.</li>
+<li>Tanto el <code>.rsx</code> como el <code>.rsx.help</code> deben estar en un directorio predefinido en la configuración del complemento.</li>
+</ul>
+<p>Todas las instrucciones de R que se escriban en el script serán internamente reescritas en un Rscript (<code>.r</code>|<code>.R</code>) temporal que será ejecutado en la consola de R.</p>
 </div>
 <div id="estructura-de-un-script" class="section level3">
 <h3>Estructura de un script</h3>
+<p>Un script R para <em>processing</em> tiene dos partes principales. Un <strong>encabezado</strong> que contiene la configuración de la herramienta; y un <strong>cuerpo</strong> que contiene el código R que ejecutará el proceso. El ejemplo que estudiaremos a continuación es tomado de los scripts incorporados en la instalación del complemento <em>Processing R provider</em></p>
+<pre class="r"><code>##Example scripts=group
+##Scatterplot=name
+##Layer=vector
+##X=Field Layer
+##Y=Field Layer
+##output_plots_to_html
+
+# simple scatterplot
+plot(Layer[[X]], Layer[[Y]])</code></pre>
+<p>Las líneas que empiezan con doble signo numeral (<code>##</code>) conforman el encabezado del script. Por ejemplo: <code>##Layer=vector</code>. Debe diferenciarse las líneas de encabezado (<code>##</code>) y de las líneas de comentarios (<code>#</code>) de modo que no causen confusión al algoritmo de <em>Processing R Prvider</em>. En tal caso, para los comentarios se recomienda usar un solo signo numeral <code>#</code> cuando este empieza en una línea nueva: Por ejemplo <code># simple scatterplot</code>.</p>
+<p>Las líneas de encabezado serán internamente convertidas en instrucciones de distintos tipos para que funcionen correctamente como una herramienta. Estas líneas condicionarán la estructura de la interfaz de la herramienta y el comportamiento de la misma.</p>
+<p>Una línea de encabezado está conformada por dos partes: Identificador y Tipo.</p>
+<pre class="r"><code>##nombre_parametro=tipo [valor_por_defecto/desde_variable]</code></pre>
+<p>…del script anterior podemos tomar cualquiera de las cinco primeras líneas como ejemplo, y veremos que tiene la estructura mencionada. Sin embargo algunos parámetros del encabezado pueden estar conformados simplemente por una etiqueta (por ejemplo <code>##output_plots_to_html</code>) que se usan internamente para indicar comportamientos específicos de la herramienta. Más detalles se verá en una sección posterior.</p>
+<p>Los comentarios y las demás instrucciones de R no forman parte del encabezado, por lo tanto serán consideradas como cuerpo del script. Estas líneas serán transcritas a un Rscript temporal, que será ejecutado línea por línea en la consola de R, mediante un subproceso stdin/stdout.</p>
 </div>
 <div id="tipos-de-parámetros" class="section level3">
 <h3>Tipos de parámetros</h3>
+<p>El encabezado puede contener distintos tipos de parámetros. Y de acuerdo con ellos la herramienta se comportará de una forma u otra:</p>
+<div id="metadatos" class="section level4">
+<h4>Metadatos</h4>
+<p>Son parámetros que permiten organizar el script en el índice de processing. Entre ellos tenemos:</p>
+<ul>
+<li><code>name</code> Permite definir un nombre corto para el script</li>
+<li><code>display_name</code> Permite definir un nombre largo para el script. Este se mostrará en el índice y en la barra de título de la herramienta</li>
+<li><code>group</code> nombre del grupo al que pertenece el script. Permite organizar la nueva herramienta como parte de un grupo específico de herramientas.</li>
+</ul>
+<pre class="r"><code>##Example scripts=group
+##Scatterplot=name
+##Scatterplot from selected fields=display_name</code></pre>
+</div>
+<div id="parámetros-de-comportamiento" class="section level4">
+<h4>Parámetros de comportamiento</h4>
+<p>Sirven para definir el comportamiento general del script. Estos parámetros se configuran en el encabezado, pero el usuario no interactúa con estos. Entre ellos tenemos</p>
+<ul>
+<li><code>output_plots_to_html</code></li>
+<li><code>load_raster_using_rgdal</code></li>
+<li><code>load_vector_using_rgdal</code></li>
+<li><code>pass_filenames</code></li>
+<li><code>dont_load_any_packages</code></li>
+<li><code>github_install</code></li>
+<li><code>expression</code></li>
+</ul>
+</div>
+<div id="parámetros-de-entrada" class="section level4">
+<h4>Parámetros de entrada</h4>
+<p>Estas líneas de parámetros especifican la apariencia de la interfaz del script. A partir de la estructura básica <code>##nombre_parametro=tipo [valor_por_defecto/desde_variable]</code> podemos destacar que <code>nombre_parámetro</code> será el nombre del objeto que contenga esa variable en la sesión de R. Mientras que <code>tipo</code> será el tipo de datos de entrada, de los posibles tipos de entrada (vector, raster, table, number, string, boolean, Field).</p>
+<table class="table" style="width: auto !important; margin-left: auto; margin-right: auto;">
+<caption>
+<span id="tab:unnamed-chunk-1">Table 1: </span>Parámetros y referencias a otros parámetros
+</caption>
+<thead>
+<tr>
+<th style="text-align:left;">
+Parámetro
+</th>
+<th style="text-align:left;">
+Valor por defecto
+</th>
+<th style="text-align:left;">
+Desde variable
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+<code>vector</code>
+</td>
+<td style="text-align:left;">
+Si
+</td>
+<td style="text-align:left;">
+No
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+<code>raster</code>
+</td>
+<td style="text-align:left;">
+Si
+</td>
+<td style="text-align:left;">
+No
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+<code>table</code>
+</td>
+<td style="text-align:left;">
+Si
+</td>
+<td style="text-align:left;">
+No
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+<code>number</code>
+</td>
+<td style="text-align:left;">
+Si
+</td>
+<td style="text-align:left;">
+No
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+<code>string</code>
+</td>
+<td style="text-align:left;">
+Si
+</td>
+<td style="text-align:left;">
+No
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+<code>boolean</code>
+</td>
+<td style="text-align:left;">
+Si
+</td>
+<td style="text-align:left;">
+No
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+<code>Field</code>
+</td>
+<td style="text-align:left;">
+No
+</td>
+<td style="text-align:left;">
+definida en <code>vector</code>
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+<code>color</code>
+</td>
+<td style="text-align:left;">
+Si
+</td>
+<td style="text-align:left;">
+No
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+<code>range</code>
+</td>
+<td style="text-align:left;">
+Si
+</td>
+<td style="text-align:left;">
+No
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+<code>datetime</code>
+</td>
+<td style="text-align:left;">
+Si
+</td>
+<td style="text-align:left;">
+No
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+<code>Band</code>
+</td>
+<td style="text-align:left;">
+No
+</td>
+<td style="text-align:left;">
+definida en <code>raster</code>
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+<code>extent</code>
+</td>
+<td style="text-align:left;">
+No
+</td>
+<td style="text-align:left;">
+No
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+<code>crs</code>
+</td>
+<td style="text-align:left;">
+No
+</td>
+<td style="text-align:left;">
+No
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+<code>enum</code>
+</td>
+<td style="text-align:left;">
+No
+</td>
+<td style="text-align:left;">
+No
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+<code>enum literal</code>
+</td>
+<td style="text-align:left;">
+No
+</td>
+<td style="text-align:left;">
+No
+</td>
+</tr>
+</tbody>
+</table>
+</div>
 </div>
 <div id="ejercicio" class="section level3">
 <h3>Ejercicio</h3>
