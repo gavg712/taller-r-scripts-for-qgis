@@ -1,4 +1,4 @@
-# **Taller UseR! 2022 🌎 :: Scripts de R para QGIS Processing**
+# **Taller [UseR! 2022](https://user2022.r-project.org/) 🌎 :: [Programando scripts de R para QGIS Processing](https://user2022.r-project.org/program/tutorials/#programming-r-scripts-for-qgis-processing)**
 
 Si tiene preguntas, haga clic en **PARTICIPAR**: <br>
 [![](https://img.shields.io/badge/discusión-participar-brightgreen?style=for-the-badge&logo=github)](https://github.com/gavg712/taller-r-script-for-qgis/discussions)
@@ -27,7 +27,7 @@ para el trabajo de datos geográficos de forma computacional (**geocomputación*
 <table class="default" align="center">
   
   <tr align="center">
-    <td><h2><b>Gabo Gaona</b></h2></td>
+    <td><h2><b>Gabriel Gaona</b></h2></td>
     <td><h2><b>Antony Barja</b></h2></td>
   </tr>
   
@@ -37,15 +37,15 @@ para el trabajo de datos geográficos de forma computacional (**geocomputación*
   </tr>
 
   <tr align="center">
-    <td>Líder de <b><a href="#">RSpacial</a></b> en español<br>Científico de datos</td>
+    <td>Líder de <b><a href="#">RSpatial</a></b> en español<br>Científico de datos</td>
     <td>Líder de <b><a href="https://github.com/qgispe">QGIS Perú</a></b> <br> Científico de datos en formación</td>
   </tr>
 
 <tr align="center">
     <td>
-      <a href="#"><img border="0" alt="Email" src="https://assets.dryicons.com/uploads/icon/svg/8009/02dc3a5c-6504-4347-85fb-3f510cfecc45.svg" width="35" height="35"></a>&nbsp;&nbsp;&nbsp;
-      <a href="#"><img border="0" alt="Twitter" src="https://assets.dryicons.com/uploads/icon/svg/8385/c23f7ffc-ca8d-4246-8978-ce9f6d5bcc99.svg" width="35" height="35"></a>&nbsp;&nbsp;&nbsp;
-      <a href="#"><img border="0" alt="LinkedIn" src="https://assets.dryicons.com/uploads/icon/svg/8337/a347cd89-1662-4421-be90-58e5e8004eae.svg" width="35" height="35"></a>&nbsp;&nbsp;&nbsp;
+      <a href="mailto:gavg712@gmail.com"><img border="0" alt="Email" src="https://assets.dryicons.com/uploads/icon/svg/8009/02dc3a5c-6504-4347-85fb-3f510cfecc45.svg" width="35" height="35"></a>&nbsp;&nbsp;&nbsp;
+      <a href="https://twitter.com/gavg712"><img border="0" alt="Twitter" src="https://assets.dryicons.com/uploads/icon/svg/8385/c23f7ffc-ca8d-4246-8978-ce9f6d5bcc99.svg" width="35" height="35"></a>&nbsp;&nbsp;&nbsp;
+      <a href="https://www.linkedin.com/in/gavg712"><img border="0" alt="LinkedIn" src="https://assets.dryicons.com/uploads/icon/svg/8337/a347cd89-1662-4421-be90-58e5e8004eae.svg" width="35" height="35"></a>&nbsp;&nbsp;&nbsp;
       <a href="#"><img border="0" alt="BuyMeACoffee" src="https://user-images.githubusercontent.com/23284899/163662071-ad32c5e8-139f-4563-80f6-9fa74959422d.jpg" width="35" height="35"></a>
     </td>
     <td>
@@ -67,7 +67,7 @@ gantt
     axisFormat  %H:%M
 
     section Gabo y Antony
-    Bienvenida e introducción : active, des1, 15:00:00, 10m
+    Bienvenida e introducción : active, des1, 09:00:00, 10m
 
     section Antony
     Instalación y configuración de QGIS Processing R : des2, after des1, 20m
@@ -88,9 +88,9 @@ gantt
     Conclusión y despedida: des9, after des8,10m
 ```
 
-### 🔵 **Fecha y medio de transmisición**
+### 🔵 **Fecha y medio de transmisión**
 
-* 🗓 12/07/2022 a las 🕟 17:00 🕢 19:30
+* 🗓 20/06/2022 a las 🕟 9:00 🕢 11:30 CDT
 * 🌐 on-line
 * ⏳ 2️.5 horas
 
