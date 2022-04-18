@@ -37,7 +37,7 @@ para el trabajo de datos geográficos de forma computacional (**geocomputación*
   </tr>
 
   <tr align="center">
-    <td>Líder de <b><a href="#">RSpatial</a></b> en español<br>Científico de datos</td>
+    <td>Líder de <b><a href="https://rspatial_es.gitlab.io/about/">RSpatial</a></b> en español<br>Científico de datos</td>
     <td>Líder de <b><a href="https://github.com/qgispe">QGIS Perú</a></b> <br> Científico de datos en formación</td>
   </tr>
 
