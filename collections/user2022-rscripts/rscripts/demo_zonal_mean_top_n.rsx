@@ -8,7 +8,7 @@
 ##Zonal=output vector
 
 Zonas_rst <- raster::rasterize(Zonas, Raster, field = Zonas_Ids)
-mean_top_100 <- function(x, top = 100, na.rm = TRUE) {
+mean_top_100 <- function(x, top = Top_N, na.rm = TRUE) {
   if(na.rm) x <- na.omit(x)
   if(length(x) < top) {
     top <- length(x)
@@ -16,6 +16,6 @@ mean_top_100 <- function(x, top = 100, na.rm = TRUE) {
   }
   mean(x[which(rank(-x) <= top)][seq_len(top)])
 }
-Stats <- raster::zonal(Raster, Zonas_rst, fun = mean_top_100, top = Top_N)
+Stats <- raster::zonal(Raster, Zonas_rst, fun = mean_top_100)
 colnames(Stats) <- c(Zonas_Ids, paste0("mean_", Top_N))
 Zonal <- merge(Zonas, Stats, by = Zonas_Ids)
