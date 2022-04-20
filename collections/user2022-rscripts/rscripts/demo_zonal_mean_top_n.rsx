@@ -17,5 +17,5 @@ mean_top_100 <- function(x, top = 100, na.rm = TRUE) {
   mean(x[which(rank(-x) <= top)][seq_len(top)])
 }
 Stats <- raster::zonal(Raster, Zonas_rst, fun = mean_top_100, top = Top_N)
-names(Stats) <- c(Zonas_Ids, "mean")
-Zonal <- merge(Zonas, Stats, by.x = "id", by.y = "zone")
+colnames(Stats) <- c(Zonas_Ids, paste0("mean_", Top_N))
+Zonal <- merge(Zonas, Stats, by = Zonas_Ids)
