@@ -1,4 +1,4 @@
-##Raster processing=group
+##Taller UseR!2022=group
 ##zonalmeantopn=name
 ##Zonal mean from top N=display_name
 ##Raster=raster
