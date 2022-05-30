@@ -1,7 +1,7 @@
 ---
 title: "2. Tu primera herramienta"
 author: "Gabo Gaona & Antony Barja"
-date: 2020-12-01T21:13:14-05:00
+date: 2022-05-23T00:00:00-05:00
 tags: ["R","QGIS"]
 ---
 
@@ -11,7 +11,7 @@ tags: ["R","QGIS"]
 
 <div id="introducción" class="section level3">
 <h3>Introducción</h3>
-<p>Un script R para <em>Processing R Provider</em> no es diferente que un script normal de R. Las pequeñas diferencias entre ambos son simplemente estructuras lógicas para que el complemento en QGIS pueda interpretarlos correctamente. A continuación se enlistan las particularidades de los R scripts para QGIS:</p>
+<p>Un script R para <em>Processing R Provider</em> no es diferente que un script normal de R. Las pequeñas diferencias entre ambos son simplemente estructuras lógicas para que el complemento en QGIS pueda interpretarlos correctamente. A continuación se listan las particularidades de los R scripts para QGIS:</p>
 <ul>
 <li>Tienen la extensión <code>.rsx</code> y pueden estar acompañados de un fichero de ayuda de extensión <code>.rsx.help</code>.</li>
 <li>Tienen por lo menos dos secciones importantes, un encabezado y un cuerpo, que se repasan en un sección posterior.</li>
@@ -21,7 +21,7 @@ tags: ["R","QGIS"]
 </div>
 <div id="estructura-de-un-script" class="section level3">
 <h3>Estructura de un script</h3>
-<p>Un script R para <em>processing</em> tiene dos partes principales. Un <strong>encabezado</strong> que contiene la configuración de la herramienta; y un <strong>cuerpo</strong> que contiene el código R que ejecutará el proceso. El ejemplo que estudiaremos a continuación es tomado de los scripts incorporados en la instalación del complemento <em>Processing R provider</em></p>
+<p>Un script R para <em>processing</em> tiene dos partes principales. Un <strong>encabezado</strong> que contiene la configuración de la herramienta; y un <strong>cuerpo</strong> que contiene el código R que ejecutará el proceso. El ejemplo que estudiaremos a continuación es tomado de los scripts incorporados en la instalación del complemento <em>Processing R provider</em>.</p>
 <pre class="r"><code>##Example scripts=group
 ##Scatterplot=name
 ##Layer=vector
@@ -57,13 +57,13 @@ plot(Layer[[X]], Layer[[Y]])</code></pre>
 <h4>Parámetros de comportamiento</h4>
 <p>Sirven para definir el comportamiento general del script. Estos parámetros se configuran en el encabezado, pero el usuario no interactúa con estos. Entre ellos tenemos</p>
 <ul>
-<li><code>output_plots_to_html</code></li>
 <li><code>load_raster_using_rgdal</code></li>
 <li><code>load_vector_using_rgdal</code></li>
 <li><code>pass_filenames</code></li>
 <li><code>dont_load_any_packages</code></li>
 <li><code>github_install</code></li>
 <li><code>expression</code></li>
+<li><code>output_plots_to_html</code></li>
 </ul>
 </div>
 <div id="parámetros-de-entrada" class="section level4">
@@ -71,7 +71,7 @@ plot(Layer[[X]], Layer[[Y]])</code></pre>
 <p>Estas líneas de parámetros especifican la apariencia de la interfaz del script. A partir de la estructura básica <code>##nombre_parametro=tipo [valor_por_defecto/desde_variable]</code> podemos destacar que <code>nombre_parámetro</code> será el nombre del objeto que contenga esa variable en la sesión de R. Mientras que <code>tipo</code> será el tipo de datos de entrada, de los posibles tipos de entrada (vector, raster, table, number, string, boolean, Field).</p>
 <table class="table" style="width: auto !important; margin-left: auto; margin-right: auto;">
 <caption>
-<span id="tab:unnamed-chunk-1">Table 1: </span>Parámetros y referencias a otros parámetros
+<span id="tab:unnamed-chunk-3">Table 1: </span>Parámetros y referencias a otros parámetros
 </caption>
 <thead>
 <tr>
@@ -255,7 +255,99 @@ No
 </tbody>
 </table>
 </div>
+<div id="parámetros-de-salida" class="section level4">
+<h4>Parámetros de salida</h4>
+<p>Se trata de líneas que permiten definir el tipo de resultado que tendrá el script. Visualmente estos parámetros generan interfaces gráficas para guardar ficheros, mientras que internamente se traducen como instrucciones para escribir objetos R como ficheros.</p>
+<p>La especificación de estos parámetros es la siguiente:</p>
+<pre class="r"><code>##&lt;Nombre_de_salida&gt; =output &lt;tipo&gt;</code></pre>
+<p>Entre las salidas posibles tenemos las siguientes:</p>
+<ul>
+<li>Salidas de capas: <code>vector</code>, <code>raster</code>, <code>table</code></li>
+<li>Salidas de valores: <code>string</code> <code>number</code></li>
+<li>Directorios y ficheros: <code>folder</code> y <code>file</code>. El el caso de file, se puede especificar una extensión para el fichero de salida. Por ejemplo <code>csv</code>.</li>
+</ul>
+<table>
+<tbody>
+<tr class="odd">
+<td><img src="https://user-images.githubusercontent.com/23284899/151858857-e98d6216-73be-4ffd-a95e-0b93fedbc0df.png" width="25px" align="center"><b> Nota informativa:</b></td>
+</tr>
+<tr class="even">
+<td>Opcionalmente se puede usar la palabra clave <code>noprompt</code> al final de cada parámetro de salida, para especificar que no genere el widget en la interfaz de la herramienta.</td>
+</tr>
+</tbody>
+</table>
+</div>
 </div>
 <div id="ejercicio" class="section level3">
 <h3>Ejercicio</h3>
+<p>Imagina que tienes un campo de valores numéricos en una capa de vectores. Y necesitas obtener un gráfico que combine un violin y boxplot juntos, para visualizar la distribución de los datos. Y tus datos están cargados en la sesión de QGIS.</p>
+<p>El ejercicio consiste en hacer una herramienta para QGIS que haga el gráfico a partir de un campo seleccionado de una capa específica.</p>
+<p>Tiempo de intentarlo, tómate un tiempo de 3 minutos para analizar el siguiente código de R.</p>
+<pre class="r"><code>library(ggplot2)
+&lt;Transformador&gt; &lt;- c(&quot;boxcox&quot;, &quot;exp&quot;, &quot;log&quot;, &quot;log10&quot;, &quot;log1p&quot;, &quot;log2&quot;, 
+               &quot;logit&quot;, &quot;probability&quot;, &quot;probit&quot;, &quot;pseudo_log&quot;, &quot;reciprocal&quot;, 
+               &quot;reverse&quot;, &quot;sqrt&quot;)[&lt;Transformador&gt;]
+p &lt;- &lt;objeto sf&gt; |&gt; 
+    ggplot() +
+    geom_violin(aes_string(x = 0, y = &lt;campo del objeto sf&gt;), 
+                alpha = 0.3, fill = &quot;blue&quot;, width = 0.5) +
+    geom_boxplot(aes_string(y = &lt;campo del objeto sf&gt;), 
+                 alpha = 0.5, fill = &quot;red&quot;, width = 0.1)
+
+if(!is.null(&lt;Transformador&gt;)) {
+    p &lt;- p + 
+         scale_y_continuous(trans = &lt;Transformador&gt;) +
+         labs(y = glue::glue(&quot;{&lt;campo del objeto sf&gt;} [{&lt;Transformador&gt;}]&quot;)) 
+}
+p</code></pre>
+<p>Cuando estés listo:</p>
+<ul>
+<li>Crea un nuevo script para QGIS Processing desde <img src="processing-r-icon.png" alt=":inline" /><code>/Create New R Script</code>.</li>
+<li>Escribe el encabezado de tu script para QGIS Processing, basándote en el código de R que revisaste
+<ul>
+<li>Empieza asignando un nombre al script con el parámetro <code>name</code></li>
+<li>Agrega un grupo al script con el parámetro <code>group</code></li>
+<li>Agrega un parámetro para una capa vectorial usando el parámetro <code>vector</code></li>
+<li>Agrega un parámetro para campo desde la capa vectorial, mediante el parámetro <code>Field</code> y vincúlalo a la capa vector agregando el nombre de la variable que asignaste en el parámetro anterior.</li>
+<li>Agrega una lista desplegable (<code>optional enum</code>) con las opciones de transformación definidos en el script. Las opciones deben ir sin comillas y separadas por un punto y coma (;).</li>
+<li>Agrega el parámetro <code>output_plots_to_html</code> para desplegar la opción para guardar el gráfico R.</li>
+</ul></li>
+<li>Copia, pega y modifica el código R en tu nuevo script.</li>
+<li>Finalmente guarda tu script en el directorio de scripts definido en la configuración del complemento.</li>
+</ul>
+<div id="ayuda" class="section level4">
+<h4>Ayuda</h4>
+<details style="margin-bottom:10px;">
+<summary>
+Haz clic en esta frase, solamente si todavía no te sientes capaz de hacerlo por tu cuenta.
+</summary>
+<pre class="r"><code>##Taller UseR!2022=group
+##violinandboxplot=name
+##Gráfico de violin y boxplot=display_name
+##Capa=vector
+##Campo=Field Capa
+##Transform=optional enum boxcox;exp;log;log10;log1p;log2;logit;probability;probit;pseudo_log;reciprocal;reverse;sqrt
+##output_plots_to_html
+
+library(ggplot2)
+if(!is.null(Transform)){
+    Transform &lt;- c(&quot;boxcox&quot;, &quot;exp&quot;, &quot;log&quot;, &quot;log10&quot;, &quot;log1p&quot;, &quot;log2&quot;, 
+               &quot;logit&quot;, &quot;probability&quot;, &quot;probit&quot;, &quot;pseudo_log&quot;, &quot;reciprocal&quot;, 
+               &quot;reverse&quot;, &quot;sqrt&quot;)[Transform]
+}
+p &lt;- Capa |&gt; 
+    ggplot() +
+    geom_violin(aes_string(x = 0, y = Campo), 
+                alpha = 0.3, fill = &quot;blue&quot;, width = 0.5) +
+    geom_boxplot(aes_string(y = Campo), 
+                 alpha = 0.5, fill = &quot;red&quot;, width = 0.1)
+
+if(!is.null(Transform)) {
+    p &lt;- p + 
+        scale_y_continuous(trans = Transform) +
+        labs(y = glue::glue(&quot;{Campo} [{Transform}]&quot;)) 
+}
+p</code></pre>
+</details>
+</div>
 </div>
