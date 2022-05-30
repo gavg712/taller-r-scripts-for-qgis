@@ -1,7 +1,7 @@
 ---
 title: "2. Tu primera herramienta"
 author: "Gabo Gaona & Antony Barja"
-date: 2022-05-23T00:00:00-05:00
+date: 2022-06-20T07:00:00-05:00
 tags: ["R","QGIS"]
 ---
 

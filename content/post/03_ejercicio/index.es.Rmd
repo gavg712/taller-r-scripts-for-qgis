@@ -1,7 +1,7 @@
 ---
 title: "3. Documentando Rscripts para QGIS"
 author: "Gabo Gaona & Antony Barja"
-date: 2020-12-01T21:13:14-05:00
+date: 2022-06-20T06:00:00-05:00
 tags: ["R","QGIS"]
 ---
 
