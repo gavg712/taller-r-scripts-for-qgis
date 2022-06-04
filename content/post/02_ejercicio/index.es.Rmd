@@ -119,10 +119,10 @@ Entre las salidas posibles tenemos las siguientes:
 - Salidas de valores: `string` `number`
 - Directorios y ficheros: `folder` y `file`. El el caso de file, se puede especificar una extensión para el fichero de salida. Por ejemplo `csv`.
 
----
-<img src="https://user-images.githubusercontent.com/23284899/151858857-e98d6216-73be-4ffd-a95e-0b93fedbc0df.png" width="25px" align="center"><b> Nota informativa:</b>
-Opcionalmente se puede usar la palabra clave `noprompt` al final de cada parámetro de salida, para especificar que no genere el widget en la interfaz de la herramienta.
----
+```{r, echo=FALSE}
+blogdown::shortcode("notice", "tip", "Tip!", 
+                    .content = "Opcionalmente se puede usar la palabra clave `noprompt` al final de cada parámetro de salida, para especificar que no genere el widget en la interfaz de la herramienta.")
+```
 
 ### Ejercicio
 
@@ -166,10 +166,14 @@ Cuando estés listo:
 - Copia, pega y modifica el código R en tu nuevo script. 
 - Finalmente guarda tu script en el directorio de scripts definido en la configuración del complemento.
 
-#### Ayuda
+```{r, echo=FALSE}
+blogdown::shortcode("notice", "warning", "Ayuda", 
+                    .content = "El contenido a continuación ha sido ocultado intencionalmente. Despliégalo solo si sientes que no puedes realizar el ejercicio por tu cuenta.")
+```
+
 <details style="margin-bottom:10px;">
 <summary>
-Haz clic en esta frase, solamente si todavía no te sientes capaz de hacerlo por tu cuenta.
+Haz clic para mostrar el contenido de ayuda.
 </summary>
 
 ``` r
