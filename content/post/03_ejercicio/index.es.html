@@ -3,10 +3,157 @@ title: "3. Documentando Rscripts para QGIS"
 author: "Gabo Gaona & Antony Barja"
 date: 2022-06-20T06:00:00-05:00
 tags: ["R","QGIS"]
+output: 
+    html_document:
+        number_sections: true
 ---
 
 
 
-<div id="introduction" class="section level3">
-<h3>2.1 Introduction</h3>
+<div id="introduction" class="section level2">
+<h2>Introduction</h2>
+<p>La documentación del software y scripts es una tarea bastante demandada por los usuarios. Las mejores herramientas de software en cualquier campo tienen particular énfasis en la documentación para el usuario. Así se aseguran que la herramienta se usada por una mayor cantidad de personas.</p>
+<p>QGIS y R no son la excepción. Tienen suficiente documentación como sea necesaria para hacerle la vida más fácil a sus usuarios. Incluso a nivel de parámetro, según Nyall Dawson (<a href="https://github.com/north-road/qgis-processing-r/pull/104#issuecomment-1028490076">Comentario #104:1028490076</a>):</p>
+<blockquote>
+<p><em>…hay un movimiento en proveer una mejor ayuda para usuarios de los algoritmos del núcleo de QGIS, agregando tips a los parámetros individuales de las herramientas, en ese sentido puedo ver que teniendo este soporte en el proveedor de R es una buena cosa</em></p>
+</blockquote>
+<p>Eso es lo que queremos transmitir con este segundo ejercicio. Proveer al usuario de la información suficiente de cómo usar un script de R para <em>QGIS Processing</em></p>
+</div>
+<div id="escribiendo-la-ayuda" class="section level2">
+<h2>Escribiendo la ayuda</h2>
+<p>Sabemos que un script de R para <em>QGIS Processing</em> tiene dos partes fundamentales para ejecutar un proceso: El encabezado y el cuerpo. Sin embargo también se puede agregar una tercera sección de información que permite complementar la herramienta. Esta tercera sección habitualmente se escribe en un fichero complementario de extensión <code>rsx.help</code>.</p>
+<div id="ficheros-rsx.help" class="section level3">
+<h3>Ficheros <code>rsx.help</code></h3>
+<p>El archivo de ayuda debe estar ubicado en el mismo directorio y tener el nombre del script, pero con extensión <code>.rsx.help</code>. El contenido de este archivo es un objeto JSON con las descripciones de los parámetros.</p>
+<p>Por ejemplo, supongamos que hemos añadido un fichero script llamado <code>simple_scatterplot.rsx</code> con el siguiente contenido:</p>
+<pre class="r"><code>##Example scripts=group
+##Scatterplot=name
+##output_plots_to_html
+##Layer=vector
+##X=Field Layer
+##Y=Field Layer
+
+# simple scatterplot
+plot(Layer[[X]], Layer[[Y]])</code></pre>
+<p>El fichero de ayuda debería ser llamado <code>simple_scatterplot.rsx.help</code> y su contenido mínimo debería ser:</p>
+<pre class="json"><code>{
+&quot;Layer&quot;: &quot;Vector Layer&quot;,
+&quot;X&quot;: &quot;Field from Layer to be used as x-axis variable&quot;,
+&quot;Y&quot;: &quot;Field from Layer to be used as y-axis variable&quot;
+}</code></pre>
+<p><img src="help-section-1.png" /></p>
+<p>Note que la descripción de cada parámetro está compuesta por un par <code>"clave":"valor"</code> y está separado de otros parámetros por una coma (,). Este fichero ya se podría usar para la descripción de la herramienta nueva. Pero aún hay más cosas que podemos usar para darle más valor informativo. Hay unos cuantos parámetros especiales que no tienen un nombre definido por el autor del script sino por el el complemento como tal. Estos son:</p>
+<ul>
+<li><code>"ALG_DESC"</code>. Es la descripción general de la herramienta. Esta se mostrará inmediatamente después del título de la sección de ayuda.</li>
+<li><code>"ALG_VERSION"</code>. Sirve para especificar la versión del script, especialmente cuando el autor lleva un control de versiones.</li>
+<li><code>"ALG_CREATOR"</code>. Es para definir el nombre del autor del script.</li>
+<li><code>"ALG_HELP_CREATOR"</code>. Es para definir el nombre de quien escribió la ayuda del script.</li>
+<li><code>"RPLOTS"</code>. Es la descripción para el gráfico de salida en el caso de que el script genere un gráfico.</li>
+<li><code>"R_CONSOLE_OUTPUT"</code>. Es la descripción para el fichero log de la consola en el caso de que el script incluya una salida a consola.</li>
+</ul>
+<p>Cualquiera de estos parámetros se pueden agregar al JSON del fichero <code>rsx.help</code>, siempre conservando la estructura de <code>"clave":"valor"</code>. Si seguimos con nuestro ejemplo anterior podemos agregar varios de estos parámetros a la descripción. Así:</p>
+<pre class="json"><code>{
+&quot;Layer&quot;: &quot;Vector Layer&quot;,
+&quot;X&quot;: &quot;Field from Layer to be used as x-axis variable&quot;,
+&quot;Y&quot;: &quot;Field from Layer to be used as y-axis variable&quot;,
+&quot;RPLOTS&quot;: &quot;Output path for html file with the scatterplot&quot;,
+&quot;ALG_DESC&quot;: &quot;This file creates a simple scatterplot from two fields in a vector layer&quot;,
+&quot;ALG_CREATOR&quot;: &quot;Name of algorithm creator&quot;,
+&quot;ALG_HELP_CREATOR&quot;: &quot;Name of help creator&quot;,
+&quot;ALG_VERSION&quot;: &quot;0.0.1&quot;
+}</code></pre>
+<p><img src="help-section-2.png" /></p>
+</div>
+<div id="ayuda-como-líneas-del-script" class="section level3">
+<h3>Ayuda como líneas del script</h3>
+<p>A partir de la versión 3.2.0 del plugin, también es posible introducir la documentación como líneas en el propio script. Esto permite prescindir del archivo <code>rsx.help</code>. Para ello, las líneas de documentación deben ser escritas con la estructura <code>#' Parámetro: Descripción</code> . Veamos cómo sería usando el ejemplo anterior.</p>
+<pre class="json"><code>##Example scripts=group
+##Scatterplot=name
+##output_plots_to_html
+##Layer=vector
+##X=Field Layer
+##Y=Field Layer
+
+# simple scatterplot
+plot(Layer[[X]], Layer[[Y]])
+
+#&#39; Layer: Vector Layer
+#&#39; X: Field from Layer to be used as x-axis variable
+#&#39; Y: Field from Layer to be used as y-axis variable
+#&#39; RPLOTS: Output path for html file with the scatterplot
+#&#39; ALG_DESC: This file creates a simple scatterplot from 
+#&#39;         : two fields in a vector layer
+#&#39; ALG_CREATOR: Name of algorithm creator
+#&#39; ALG_HELP_CREATOR: Name of help creator
+#&#39; ALG_VERSION: 0.0.1</code></pre>
+<p>El resultado se mostrará exactamente como cuando se usan los ficheros de ayuda. Además, nótese que de este modo también es posible introducir la descripción de un parámetro en varias líneas. Para ello, es necesario continuar las líneas posteriores sin introducir el nombre del parámetro, así <code>#' : descripción adicional</code>.</p>
+</div>
+</div>
+<div id="estructura-y-estilos-con-html." class="section level2">
+<h2>Estructura y estilos con HTML.</h2>
+<p>En las líneas de ayuda también se pueden introducir pequeños elementos de código HTML. Éste será evaluado al momento de ejecutar la herramienta. Desafortunadamente no todas las bodades de html y css pueden ser usadas. Sin embargo algunas cosas funcionarán.</p>
+<pre class="html"><code>{
+&quot;Layer&quot;: &quot;Vector Layer&quot;,
+&quot;X&quot;: &quot;A &lt;b&gt;Field&lt;/b&gt; from &lt;em&gt;Layer&lt;/em&gt; to be used as &lt;code style=&#39;background-color: yellow;&#39;&gt;x-axis&lt;/code&gt; variable&quot;,
+&quot;Y&quot;: &quot;A &lt;b&gt;Field&lt;/b&gt; from &lt;em&gt;Layer&lt;/em&gt; from Layer to be used as &lt;code style=&#39;background-color: yellow;&#39;&gt;y-axis&lt;/code&gt; variable&quot;,
+&quot;RPLOTS&quot;: &quot;&lt;b style=&#39;text-decoration: underline;&#39;&gt;Output path&lt;/b&gt; for html file with the scatterplot&quot;,
+&quot;ALG_DESC&quot;: &quot;&lt;p&gt;This file creates a &lt;span style=&#39;text-decoration: underline;&#39;&gt;simple scatterplot&lt;/span&gt; from two fields in a vector layer&lt;/p&gt;&lt;p&gt;Github repository: &lt;a href=&#39;https://github.com/gavg712/taller-r-scripts-for-qgis&#39;&gt;Taller UseR!2022 repo&lt;/a&gt;&quot;,
+&quot;ALG_CREATOR&quot;: &quot;&lt;a href=&#39;https://github.com/gavg712&#39;&gt;@gavg712&lt;/a&gt;&quot;,
+&quot;ALG_HELP_CREATOR&quot;: &quot;@gavg712&quot;,
+&quot;ALG_VERSION&quot;: &quot;0.0.1&quot;
+}</code></pre>
+<p><img src="help-section-3.png" /></p>
+</div>
+<div id="ejercicio" class="section level2">
+<h2>Ejercicio</h2>
+<p>Ahora practicaremos documentando el script del ejercicio anterior. Usted puede elegir el texto descriptivo que mejor le parezca para cada parámetro del script. Puede incluir también uno o varios parámetros especiales, según le convenga. Empecemos!</p>
+<ul>
+<li>Primero en función de qué versión del plugin tiene instalado <strong><em>Processing R Provider</em></strong>, decida qué tipo de formato va a usar para su script. Recuerde que la versión de líneas de documentación en el script solo está disponible a partir de la versión 3.2.0 del plugin.</li>
+<li>Si va a crear un fichero, abra un fichero de texto nuevo y guárdelo en la carpeta de rscripts del plugin.</li>
+<li>Abra ese fichero en modo de edición con cualquier editor de texto.</li>
+<li>Escriba entre llaves <code>{...}</code> la descripción para cada parámetro de la herramienta. No olvide poner entre comillas dobles (<code>"</code>) tanto la clave como el valor de cada parámetro, y una coma (<code>,</code>) para separa cada parámetro.</li>
+<li>Opcionalmente, agregue una descripción general del algoritmo, el nombre del creador del algoritmo o de la ayuda.</li>
+<li>Guarde los cambios y visualice el resultado abriendo el script desde la caja de herramientas de <em>Processing</em></li>
+</ul>
+{{% notice "warning" "Ayuda" %}}
+El contenido a continuación ha sido ocultado intencionalmente. Despliégalo solo si sientes que no puedes realizar el ejercicio por tu cuenta.
+{{% /notice %}}
+<details style="margin-bottom:10px;">
+<summary>
+Haz clic para mostrar el contenido de ayuda.
+</summary>
+<ul>
+<li><p>Opción 1. Guardar un fichero <code>rsx.help</code> en la misma ubicación de los rscripts de processing, con el contenido:</p>
+<pre class="json"><code>{
+&quot;Capa&quot;: &quot;Una capa vectorial que contenga la variable a graficar&quot;,
+&quot;Campo&quot;: &quot;Un campo de la capa de entrada. Este será la &lt;em&gt;variable&lt;/em&gt; a graficar&quot;,
+&quot;Transform&quot;: &quot;Opcional. Se puede elegir un método de transformación de la variable.&quot;,
+&quot;ALG_DESC&quot;: &quot;Esta herramienta permite crear un gráfico que combina un violín y un boxplot, usando &lt;code style=&#39;color: #dfdfdf;background-color: #2e393d;&#39;&gt;ggplot2&lt;/code&gt;&quot;,
+&quot;ALG_CREATOR&quot;: &quot;&lt;Nombre del creador&gt;&quot;,
+&quot;ALG_HELP_CREATOR&quot;: &quot;Instructores&quot;,
+&quot;ALG_VERSION&quot;: &quot;0.0.1&quot;
+}</code></pre></li>
+<li><p>Opción 2. Escribir la documentación en el mismo script (solo a partir de la versión 3.2.0 del plugin).</p>
+<pre class="html"><code>#&#39; Capa: Una capa vectorial que contenga la variable a graficar
+#&#39; Campo: Un campo de la capa de entrada. Este será la &lt;em&gt;variable&lt;/em&gt; a graficar
+#&#39; Transform: Opcional. Se puede elegir un método de transformación de la variable.
+#&#39; ALG_DESC: Esta herramienta permite crear un gráfico que combina un violín y un boxplot,
+#&#39; :usando &lt;code style=&quot;padding:2px;color: #dfdfdf;background-color: #2e393d;&quot;&gt;ggplot2&lt;/code&gt;
+#&#39; ALG_CREATOR: &lt;Nombre del creador&gt;
+#&#39; ALG_HELP_CREATOR: Instructores
+#&#39; ALG_VERSION: 0.0.1
+
+##Taller UseR!2022=group
+##violinandboxplot=name
+##Gráfico de violin y boxplot=display_name
+##Capa=vector
+##Campo=Field Capa
+##Transform=optional enum boxcox;exp;log;log10;log1p;log2;logit;probability;probit;pseudo_log;reciprocal;reverse;sqrt
+##output_plots_to_html
+
+library(ggplot2)
+... &lt; RESTO DEL CUERPO &gt;
+</code></pre></li>
+</ul>
+</details>
 </div>
