@@ -138,7 +138,7 @@ Ahora practicaremos documentando el script del ejercicio anterior. Usted puede e
 - Guarde los cambios y visualice el resultado abriendo el script desde la caja de herramientas de _Processing_
 
 ```{r, echo=FALSE}
-blogdown::shortcode("notice", "warning", "Ayuda", 
+blogdown::shortcode("notice", "warning", "🤞 Ayuda", 
                     .content = "El contenido a continuación ha sido ocultado intencionalmente. Despliégalo solo si sientes que no puedes realizar el ejercicio por tu cuenta.")
 ```
 
