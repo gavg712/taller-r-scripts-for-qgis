@@ -13,27 +13,27 @@ Les invitamos a compartir sus herramientas mediante una PR a la rama principal d
 
 1. Haz un Fork del repositorio [gavg712/taller-r-scripts-for-qgis](https://github.com/gavg712/taller-r-scripts-for-qgis) usando tu cuenta de GitHub: 
 
-![](repository_fork.png)
+    ![Vista en GitHub del botón de Fork](repository_fork.png)
 
 2. Desde la consola o desde Rstudio, clona el repositorio desde tu cuenta de GitHub, para tener una versión local íntegra en tu computador.
 
-```bash
-cd <directorio de trabajo>
-git clone https://github.com/<usuario>/taller-r-scripts-for-qgis.git
-# Cambia <usuario> por tu usuario de github
-```
+    ```bash
+    cd <directorio de trabajo>
+    git clone https://github.com/<usuario>/taller-r-scripts-for-qgis.git
+    # Cambia <usuario> por tu usuario de github
+    ```
 3. Agrega/Copia los ficheros que quieras compartir (`*.rsx`, `*rsx.help`) al directorio `collections/user2022-rscripts/rscripts` y registra el cambio en el índice de git.
 
-```bash
-cd taller-r-scripts-for-qgis
-git add --all
-git commit -m "<nombre del script>"
-git push
-```
+    ```bash
+    cd taller-r-scripts-for-qgis
+    git add --all
+    git commit -m "<nombre del script>"
+    git push
+    ```
 
 4. Haz un _Pull Request_ desde tu fork al repositorio del taller
 
-![](repository_pr.png)
+    ![Vista en GitHub de botones de Contribuir y Abrir un Pull Request](repository_pr.png)
 
 {{% notice info "✨ ¡Importante!" %}}
 Los PR que recibamos serán aceptados durante el tutorial de manera que puedan estar disponibles para el tramo final del tutorial.

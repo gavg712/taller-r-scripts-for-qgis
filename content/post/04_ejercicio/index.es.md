@@ -1,5 +1,5 @@
 ---
-title: "Usando shorcode notice"
+title: "4. Salidas no espaciales"
 author: "Gabo Gaona & Antony Barja"
 date: 2022-05-20T05:00:00-05:00
 tags: ["R","QGIS"]

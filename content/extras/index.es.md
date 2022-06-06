@@ -66,7 +66,7 @@ con la siguiente información:
 
 
 
-... finalmente Clic en el botón `[Aceptar]`
+... y para confirmar, un clic en el botón `[Aceptar]`
 
 ![](qrsharing_add_repository.png)
 
@@ -78,12 +78,12 @@ seleccionamos y hacemos un clic en el botón `[Install]`
 
 ![](qrsharing_install_workshop_collection.png)
 
-Ahora, en la caja de herramientas de processing podrás ver un grupo de scripts
+Finalmente, en la caja de herramientas de _Processing_ podrás ver un grupo de scripts
 de R, denominado *"Taller UserR!2022"*
 
 ![](qrsharing_processing_rscripts.png)
 
-{{% notice tip "¿Cómo actualizar una colección instalada?" %}}
+{{% notice tip "👌 ¿Cómo actualizar una colección instalada?" %}}
 Si quieres actualizar un colección solo basta con reinstalarla. En el caso que nos compete, abre el complemento de *Resources sharing*, busca la coleción y da clic en el botón `[Reinstall]`
 {{% /notice %}}
 
