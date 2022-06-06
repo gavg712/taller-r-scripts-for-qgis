@@ -35,4 +35,7 @@ git push
 
 ![](repository_pr.png)
 
+{{% notice info "✨ ¡Importante!" %}}
 Los PR que recibamos serán aceptados durante el tutorial de manera que puedan estar disponibles para el tramo final del tutorial.
+{{% /notice %}}
+
