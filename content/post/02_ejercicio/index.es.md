@@ -19,7 +19,7 @@ Todas las instrucciones de R que se escriban en el script serán internamente re
 
 Un script R para _processing_ tiene dos partes principales. Un **encabezado** que contiene la configuración de la herramienta; y un **cuerpo** que contiene el código R que ejecutará el proceso. El ejemplo que estudiaremos a continuación es tomado de los scripts incorporados en la instalación del complemento _Processing R provider_.
 
-```{r eval=FALSE, echo=TRUE}
+```r
 ##Example scripts=group
 ##Scatterplot=name
 ##Layer=vector
@@ -58,7 +58,7 @@ Son parámetros que permiten organizar el script en el índice de processing. En
 - `display_name` Permite definir un nombre largo para el script. Este se mostrará en el índice y en la barra de título de la herramienta
 - `group` nombre del grupo al que pertenece el script. Permite organizar la nueva herramienta como parte de un grupo específico de herramientas.
 
-```{r hl_lines=2, eval=FALSE}
+```r
 ##Example scripts=group
 ##Scatterplot=name
 ##Scatterplot from selected fields=display_name
@@ -80,28 +80,24 @@ Sirven para definir el comportamiento general del script. Estos parámetros se c
 
 Estas líneas de parámetros especifican la apariencia de la interfaz del script. A partir de la estructura básica `##nombre_parametro=tipo [valor_por_defecto/desde_variable]` podemos destacar que `nombre_parámetro` será el nombre del objeto que contenga esa variable en la sesión de R. Mientras que `tipo` será el tipo de datos de entrada, de los posibles tipos de entrada (vector, raster, table, number, string, boolean, Field).
 
-```{r, echo=FALSE}
-tibble::tribble(
-          ~Parámetro, ~`Valor por defecto`,        ~`Desde variable`,
-          "`vector`",               "Si",                   "No",
-          "`raster`",               "Si",                   "No",
-           "`table`",               "Si",                   "No",
-          "`number`",               "Si",                   "No",
-          "`string`",               "Si",                   "No",
-         "`boolean`",               "Si",                   "No",
-           "`Field`",               "No", "definida en `vector`",
-           "`color`",               "Si",                   "No",
-           "`range`",               "Si",                   "No",
-        "`datetime`",               "Si",                   "No",
-            "`Band`",               "No", "definida en `raster`",
-          "`extent`",               "No",                   "No",
-             "`crs`",               "No",                   "No",
-            "`enum`",               "No",                   "No",
-    "`enum literal`",               "No",                   "No"
-    ) |> 
-    knitr::kable(caption = "Parámetros y referencias a otros parámetros") |> 
-    kableExtra::kable_styling(full_width = FALSE)
-```
+|Parámetro      |Valor por defecto|Desde variable      |
+|:--------------|:---------------:|:------------------:|
+|`vector`       |Si               |No                  |
+|`raster`       |Si               |No                  |
+|`table`        |Si               |No                  |
+|`number`       |Si               |No                  |
+|`string`       |Si               |No                  |
+|`boolean`      |Si               |No                  |
+|`Field`        |No               |definida en `vector`|
+|`color`        |Si               |No                  |
+|`range`        |Si               |No                  |
+|`datetime`     |Si               |No                  |
+|`Band`         |No               |definida en `raster`|
+|`extent`       |No               |No                  |
+|`crs`          |No               |No                  |
+|`enum`         |No               |No                  |
+|`enum literal` |No               |No                  |
+
 
 #### Parámetros de salida
 
@@ -119,10 +115,9 @@ Entre las salidas posibles tenemos las siguientes:
 - Salidas de valores: `string` `number`
 - Directorios y ficheros: `folder` y `file`. El el caso de file, se puede especificar una extensión para el fichero de salida. Por ejemplo `csv`.
 
-```{r, echo=FALSE}
-blogdown::shortcode("notice", "tip", "👌 Tip!", 
-                    .content = "Opcionalmente se puede usar la palabra clave `noprompt` al final de cada parámetro de salida, para especificar que no genere el widget en la interfaz de la herramienta.")
-```
+{{% notice tip "👌 Tip!" %}}
+Opcionalmente se puede usar la palabra clave `noprompt` al final de cada parámetro de salida, para especificar que no genere el widget en la interfaz de la herramienta.
+{{% /notice %}}
 
 ### Ejercicio
 
@@ -132,7 +127,7 @@ El ejercicio consiste en hacer una herramienta para QGIS que haga el gráfico a 
 
 Tiempo de intentarlo, tómate un tiempo de 3 minutos para analizar el siguiente código de R. 
 
-```{r, eval=FALSE, echo=TRUE}
+```r
 library(ggplot2)
 <Transformador> <- c("boxcox", "exp", "log", "log10", "log1p", "log2", 
                "logit", "probability", "probit", "pseudo_log", "reciprocal", 
@@ -166,10 +161,9 @@ Cuando estés listo:
 - Copia, pega y modifica el código R en tu nuevo script. 
 - Finalmente guarda tu script en el directorio de scripts definido en la configuración del complemento.
 
-```{r, echo=FALSE}
-blogdown::shortcode("notice", "warning", "🤞 Ayuda", 
-                    .content = "El contenido a continuación ha sido ocultado intencionalmente. Despliégalo solo si sientes que no puedes realizar el ejercicio por tu cuenta.")
-```
+{{% notice warning "🤞 Ayuda" %}}
+El contenido a continuación ha sido ocultado intencionalmente. Despliégalo solo si sientes que no puedes realizar el ejercicio por tu cuenta.
+{{% /notice %}}
 
 <details style="margin-bottom:10px;">
 <summary>

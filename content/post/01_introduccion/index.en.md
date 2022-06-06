@@ -5,9 +5,6 @@ date: 2022-05-20T08:00:00-05:00
 tags: ["R", "QGIS"]
 ---
 
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(collapse = TRUE)
-```
 
 ### 1.1 What is QGIS?
 

@@ -80,7 +80,7 @@ Cualquiera de estos parámetros se pueden agregar al JSON del fichero `rsx.help`
 A partir de la versión 3.2.0 del plugin, también es posible introducir la documentación como líneas en el propio script. Esto permite prescindir del archivo `rsx.help`. Para ello, las líneas de documentación deben ser escritas con la estructura `#' Parámetro: Descripción` . Veamos cómo sería usando el ejemplo anterior. 
 
 
-```json
+```r {hl_lines=[11,12, 13, 14, 15, 16, 17, 18, 19]}
 ##Example scripts=group
 ##Scatterplot=name
 ##output_plots_to_html
@@ -134,10 +134,9 @@ Ahora practicaremos documentando el script del ejercicio anterior. Usted puede e
 - Opcionalmente, agregue una descripción general del algoritmo, el nombre del creador del algoritmo o de la ayuda.
 - Guarde los cambios y visualice el resultado abriendo el script desde la caja de herramientas de _Processing_
 
-```{r, echo=FALSE}
-blogdown::shortcode("notice", "warning", "🤞 Ayuda", 
-                    .content = "El contenido a continuación ha sido ocultado intencionalmente. Despliégalo solo si sientes que no puedes realizar el ejercicio por tu cuenta.")
-```
+{{% notice warning "🤞 Ayuda" %}}
+El contenido a continuación ha sido ocultado intencionalmente. Despliégalo solo si sientes que no puedes realizar el ejercicio por tu cuenta.
+{{% /notice %}}
 
 <details style="margin-bottom:10px;">
 <summary>

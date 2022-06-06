@@ -5,10 +5,6 @@ date: 2022-05-20T09:00:00-05:00
 tags: ["R", "QGIS"]
 ---
 
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(collapse = TRUE)
-```
-
 ### Contenidos
 
 <center><img src="https://user-images.githubusercontent.com/23284899/152171996-54afdafa-4456-4d63-9c92-dca515b100a8.png" width="80%"></center>
