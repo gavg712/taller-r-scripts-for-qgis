@@ -7,7 +7,7 @@ tags: ["R", "QGIS"]
 
 ### Contenidos
 
-<center><img src="https://user-images.githubusercontent.com/23284899/152171996-54afdafa-4456-4d63-9c92-dca515b100a8.png" width="80%"></center>
+<center><img src="https://user-images.githubusercontent.com/23284899/173690718-29a16f68-fb95-498d-8d43-617594478c9e.png" width="80%"></center>
 
 Bienvenid`[a|e|o]`s, 
 
