@@ -7,7 +7,7 @@ tags: ["R", "QGIS"]
 
 ### 1.1 Contents
 
-<center><img src="https://user-images.githubusercontent.com/23284899/152171996-54afdafa-4456-4d63-9c92-dca515b100a8.png" width="80%"></center>
+<center><img src="https://user-images.githubusercontent.com/23284899/173690718-29a16f68-fb95-498d-8d43-617594478c9e.png" width="80%"></center>
 
 We are Gabo Gaona (Ecuador) and Antony Barja (Peru) and we have prepared this tutorial to show a little bit of the _Processing R Provider_ add-on and how it can be useful for R and QGIS users. This time that we will share together we will try to build algorithms for the QGIS Processing toolbox. We hope that by the end of this tutorial you will have acquired enough skills to write your own tools for QGIS using the R language.
 
