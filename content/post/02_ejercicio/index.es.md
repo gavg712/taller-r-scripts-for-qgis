@@ -121,30 +121,39 @@ Opcionalmente se puede usar la palabra clave `noprompt` al final de cada paráme
 
 ### Ejercicio
 
-Imagina que tienes un campo de valores numéricos en una capa de vectores. Y necesitas obtener un gráfico que combine un violin y boxplot juntos, para visualizar la distribución de los datos. Y tus datos están cargados en la sesión de QGIS.
+Imagina que tienes una capa de puntos de donde necesitas calcular distintas medidas de tendencia central espacial. Tus datos están cargados en la sesión de QGIS, pero QGIS no tiene una herramienta que te permita calcular puntos centrales a partir de tus datos.
 
-El ejercicio consiste en hacer una herramienta para QGIS que haga el gráfico a partir de un campo seleccionado de una capa específica. 
+El ejercicio consiste en hacer una herramienta para QGIS que haga el cálculo del punto central, con diferentes estadísticos. Por ejemplo, _"Mean center"_, _"Median center"_, _"Central feature"_ o _"Weighted mean center"_ ([ver más detalles](https://pro.arcgis.com/en/pro-app/2.8/tool-reference/spatial-statistics/an-overview-of-the-measuring-geographic-distributions-toolset.htm)). 
 
-Tiempo de intentarlo, tómate un tiempo de 3 minutos para analizar el siguiente código de R. 
+Tiempo de intentarlo, tómate un tiempo de 3 minutos para analizar el siguiente código de R. Las porciones de código entre los signos `<` y `>` corresponden a los nombres de variables de los parámetros de entrada. Los signos `<` y `>` no son necesarios en un script válido, solo se han usado para resaltar el ejemplo.
 
 ```r
-library(ggplot2)
-<Transformador> <- c("boxcox", "exp", "log", "log10", "log1p", "log2", 
-               "logit", "probability", "probit", "pseudo_log", "reciprocal", 
-               "reverse", "sqrt")[<Transformador>]
-p <- <objeto sf> |> 
-    ggplot() +
-    geom_violin(aes_string(x = 0, y = <campo del objeto sf>), 
-                alpha = 0.3, fill = "blue", width = 0.5) +
-    geom_boxplot(aes_string(y = <campo del objeto sf>), 
-                 alpha = 0.5, fill = "red", width = 0.1)
+# Funciones y objetos para calcular punto medio ----
 
-if(!is.null(<Transformador>)) {
-    p <- p + 
-         scale_y_continuous(trans = <Transformador>) +
-         labs(y = glue::glue("{<campo del objeto sf>} [{<Transformador>}]")) 
-}
-p
+  # < Aquí el código de 4 funciones de ayuda para el cálculo. >
+  # < no son importantes por ahora. >
+
+# Calcular punto medio ----
+  # extraer matriz de coordenadas de los puntos ----
+  xy <- st_coordinates(< CAPA >)
+  
+  # Control para el campo de pesos ----
+  < CAMPO DE PESOS > <- if(!is.null(< CAMPO DE PESOS >)) < CAPA >[[< CAMPO DE PESOS >]]
+ 
+  # obtener el punto medio ----
+  mc <- switch(< CENTRO ESPACIAL >,
+               mean.center = mean_mc(),
+               weighted.mean.center = mean_mc(< CAMPO DE PESOS >),
+               median.center = median_mc(),
+               central.feature = central_feature(),
+               all = all_features()
+  )
+  
+  # Convertir a Simple Feature y asignar CRS ----
+  < PUNTO CENTRAL > <- st_as_sf(st_geometry(mc), crs = st_crs(< CAPA >))
+  
+  # Asignar nombres como atributos del punto medio ----
+  < PUNTO CENTRAL >$Name <- if(< CENTRO ESPACIAL > == "all") nms else nms[< CENTRO ESPACIAL >]
 
 ```
 
@@ -152,13 +161,71 @@ Cuando estés listo:
 
 - Crea un nuevo script para QGIS Processing desde ![:inline](processing-r-icon.png)`/Create New R Script`.
 - Escribe el encabezado de tu script para QGIS Processing, basándote en el código de R que revisaste
-   - Empieza asignando un nombre al script con el parámetro `name`
-   - Agrega un grupo al script con el parámetro `group`
-   - Agrega un parámetro para una capa vectorial usando el parámetro `vector`
-   - Agrega un parámetro para campo desde la capa vectorial, mediante el parámetro `Field` y vincúlalo a la capa vector agregando el nombre de la variable que asignaste en el parámetro anterior.
-   - Agrega una lista desplegable (`optional enum`) con las opciones de transformación definidos en el script. Las opciones deben ir sin comillas y separadas por un punto y coma (;).
-  - Agrega el parámetro `output_plots_to_html` para desplegar la opción para guardar el gráfico R.
-- Copia, pega y modifica el código R en tu nuevo script. 
+    - Empieza asignando un nombre al script con el parámetro `name`
+    - Agrega un grupo al script con el parámetro `group`
+    - Opcionalmente, también se puede agregar el parámetro `display_name` para poner un título más explicativo para la herramienta.
+    - Agrega un parámetro para una capa vectorial de tipo punto usando el parámetro `vector point`
+    - Agrega una lista desplegable (`enum literal`) con las opciones de selección `all;mean.center;weighted.mean.center;median.center;central.feature`. Nótese que cada elemento de la lista está separado por un punto y coma (;).
+    - Agrega un parámetro para campo de pesos opcional que se despliegue desde la capa vectorial, mediante el parámetro `Field` seguido del nombre de la variable que asignaste en el parámetro de la capa de entrada.
+    - Agrega el nombre de la capa de saluda usando el parámetro `output vector`.
+- Copia y pega el código R que te mostramos a continuación, en tu nuevo script: 
+    
+    <details style="margin-bottom:10px;">
+    <summary>
+    Clic aquí para ver el código completo y funcional de este mismo ejercicio.
+    </summary>
+    
+    ``` r
+    # Funciones y objetos para calcular punto medio ----
+      nms <- c(mean.center = "Mean center", 
+               median.center = "Median center", 
+               central.feature = "Central feature", 
+               weighted.mean.center = "Weighted mean center")
+      
+      mean_mc <- function(w = NULL){
+          if(is.null(w) && Centro_espacial == "weighted.mean.center")
+              warning("Weights field is null. Mean center instead!")
+          
+          if(!is.null(w)) {
+              m <- apply(xy, 2, weighted.mean, w = w)
+          } else {m <- apply(xy, 2, mean)}
+          st_point(m)
+      }
+      
+      median_mc <- function() st_point(apply(xy, 2, median))
+      
+      central_feature <- function(){
+          d <- st_distance(Capa)
+          d <- apply(d, 1, sum)
+          st_point(xy[which.min(d),])
+      }
+      
+      all_features <- function(){
+          if(!is.null(Campo_de_pesos))
+              st_sfc(mean_mc(), median_mc(), central_feature(), mean_mc(Campo_de_pesos))
+          else 
+              st_sfc(mean_mc(), median_mc(), central_feature())
+      }
+    
+    # Calcular punto medio ----
+      # extraer matriz de coordenadas de los puntos ----
+      xy <- st_coordinates(Capa)
+      # Control para el campo de pesos ----
+      Campo_de_pesos <- if(!is.null(Campo_de_pesos)) Capa[[Campo_de_pesos]]
+      # obtener el punto medio ----
+      mc <- switch(Centro_espacial,
+                   mean.center = mean_mc(),
+                   weighted.mean.center = mean_mc(Campo_de_pesos),
+                   median.center = median_mc(),
+                   central.feature = central_feature(),
+                   all = all_features()
+      )
+      # Convertir a Simple Feature y asignar CRS ----
+      Punto_central <- st_as_sf(st_geometry(mc), crs = st_crs(Capa))
+      # Asignar nombres como atributos del punto medio ----
+      Punto_central$Name <- if(Centro_espacial == "all") nms else nms[Centro_espacial]
+    ```
+    </details>
 - Finalmente guarda tu script en el directorio de scripts definido en la configuración del complemento.
 
 {{% notice warning "🤞 Ayuda" %}}
@@ -172,32 +239,66 @@ Haz clic para mostrar el contenido de ayuda.
 
 ``` r
 ##Taller UseR!2022=group
-##violinandboxplot=name
-##Gráfico de violin y boxplot=display_name
-##Capa=vector
-##Campo=Field Capa
-##Transform=optional enum boxcox;exp;log;log10;log1p;log2;logit;probability;probit;pseudo_log;reciprocal;reverse;sqrt
-##output_plots_to_html
+##centrality=name
+##Centralidad espacial=display_name
+##Capa=vector point
+##Centro_espacial=enum literal  all
+##Campo_de_pesos=optional field Capa
+##Punto_central=output vector
 
-library(ggplot2)
-if(!is.null(Transform)){
-    Transform <- c("boxcox", "exp", "log", "log10", "log1p", "log2", 
-               "logit", "probability", "probit", "pseudo_log", "reciprocal", 
-               "reverse", "sqrt")[Transform]
-}
-p <- Capa |> 
-    ggplot() +
-    geom_violin(aes_string(x = 0, y = Campo), 
-                alpha = 0.3, fill = "blue", width = 0.5) +
-    geom_boxplot(aes_string(y = Campo), 
-                 alpha = 0.5, fill = "red", width = 0.1)
+# FUNCIONES Y OBJETOS AUXILIARES PARA CALCULAR PUNTO MEDIO ----
+nms <- c(mean.center = "Mean center", 
+         median.center = "Median center", 
+         central.feature = "Central feature", 
+         weighted.mean.center = "Weighted mean center")
 
-if(!is.null(Transform)) {
-    p <- p + 
-        scale_y_continuous(trans = Transform) +
-        labs(y = glue::glue("{Campo} [{Transform}]")) 
+mean_mc <- function(w = NULL){
+    if(is.null(w) && Centro_espacial == "weighted.mean.center")
+        warning("Weights field is null. Mean center instead!")
+    
+    if(!is.null(w)) {
+        m <- apply(xy, 2, weighted.mean, w = w)
+    } else {m <- apply(xy, 2, mean)}
+    st_point(m)
 }
-p
+
+median_mc <- function() st_point(apply(xy, 2, median))
+
+central_feature <- function(){
+    d <- st_distance(Capa)
+    d <- apply(d, 1, sum)
+    st_point(xy[which.min(d),])
+}
+
+all_features <- function(){
+    if(!is.null(Campo_de_pesos))
+        st_sfc(mean_mc(), median_mc(), central_feature(), mean_mc(Campo_de_pesos))
+    else 
+        st_sfc(mean_mc(), median_mc(), central_feature())
+}
+
+# CALCULAR PUNTO MEDIO ----
+# extraer matriz de coordenadas de los puntos ----
+xy <- st_coordinates(Capa)
+
+# Control para el campo de pesos ----
+Campo_de_pesos <- if(!is.null(Campo_de_pesos)) Capa[[Campo_de_pesos]]
+
+# obtener el punto medio ----
+mc <- switch(Centro_espacial,
+             mean.center = mean_mc(),
+             weighted.mean.center = mean_mc(Campo_de_pesos),
+             median.center = median_mc(),
+             central.feature = central_feature(),
+             all = all_features()
+)
+
+# Convertir a Simple Feature y asignar CRS ----
+Punto_central <- st_as_sf(st_geometry(mc), crs = st_crs(Capa))
+
+# Asignar nombres como atributos del punto medio ----
+Punto_central$Name <- if(Centro_espacial == "all") nms else nms[Centro_espacial]
+
 ```
 
 </details>
