@@ -75,14 +75,15 @@ Cualquiera de estos parámetros se pueden agregar al JSON del fichero `rsx.help`
 
 ![](help-section-2.png)
 
-### Ayuda como líneas del script
+### Ayuda como líneas del script (Pronto en la versión 3.2.0 [#104](https://github.com/north-road/qgis-processing-r/pull/104))
 
-A partir de la versión 3.2.0 del plugin, también es posible introducir la documentación como líneas en el propio script. Esto permite prescindir del archivo `rsx.help`. Para ello, las líneas de documentación deben ser escritas con la estructura `#' Parámetro: Descripción` . Veamos cómo sería usando el ejemplo anterior. 
+A partir de la versión 3.2.0 del plugin, también es posible introducir la documentación como líneas en el propio script. Esto permite prescindir del archivo `rsx.help`. Para ello, las líneas de documentación deben ser escritas con la estructura `#' Parámetro: Descripción` . Veamos cómo sería usando el ejemplo anterior. Fíjese en las líneas 11-19, ¿Le parece familiar?
 
 
-```r {hl_lines=[11,12, 13, 14, 15, 16, 17, 18, 19]}
+```r
 ##Example scripts=group
 ##Scatterplot=name
+##Gráfico de dispersión=display_name
 ##output_plots_to_html
 ##Layer=vector
 ##X=Field Layer
@@ -106,7 +107,7 @@ El resultado se mostrará exactamente como cuando se usan los ficheros de ayuda.
 
 ## Estructura y estilos con HTML.
 
-En las líneas de ayuda también se pueden introducir pequeños elementos de código HTML. Éste será evaluado al momento de ejecutar la herramienta. Desafortunadamente no todas las bodades de html y css pueden ser usadas. Sin embargo algunas cosas funcionarán.
+En las líneas de ayuda también se pueden introducir pequeños elementos de código HTML. Este será evaluado al momento de ejecutar la herramienta. Desafortunadamente no todas las bondades de HTML y CSS3 pueden ser usadas. Sin embargo algunas cosas funcionarán.
 
 ```html
 {
@@ -115,7 +116,7 @@ En las líneas de ayuda también se pueden introducir pequeños elementos de có
 "Y": "A <b>Field</b> from <em>Layer</em> from Layer to be used as <code style='background-color: yellow;'>y-axis</code> variable",
 "RPLOTS": "<b style='text-decoration: underline;'>Output path</b> for html file with the scatterplot",
 "ALG_DESC": "<p>This file creates a <span style='text-decoration: underline;'>simple scatterplot</span> from two fields in a vector layer</p><p>Github repository: <a href='https://github.com/gavg712/taller-r-scripts-for-qgis'>Taller UseR!2022 repo</a>",
-"ALG_CREATOR": "<a href='https://github.com/gavg712'>@gavg712</a>",
+"ALG_CREATOR": "<a href='https://github.com/nyalldawson'>@nyalldawson</a>",
 "ALG_HELP_CREATOR": "@gavg712",
 "ALG_VERSION": "0.0.1"
 }
@@ -127,11 +128,11 @@ En las líneas de ayuda también se pueden introducir pequeños elementos de có
 
 Ahora practicaremos documentando el script del ejercicio anterior. Usted puede elegir el texto descriptivo que mejor le parezca para cada parámetro del script. Puede incluir también uno o varios parámetros especiales, según le convenga. Empecemos!
 
-- Primero en función de qué versión del plugin tiene instalado **_Processing R Provider_**, decida qué tipo de formato va a usar para su script. Recuerde que la versión de líneas de documentación en el script solo está disponible a partir de la versión 3.2.0 del plugin.
+- Primero en función de qué versión del plugin **_Processing R Provider_** tiene instalado, decida usted qué tipo de formato va a usar para su script. _Recuerde que el uso de **líneas de documentación** en el script solo está disponible a partir de la versión 3.2.0 del plugin._
 - Si va a crear un fichero, abra un fichero de texto nuevo y guárdelo en la carpeta de rscripts del plugin.
 - Abra ese fichero en modo de edición con cualquier editor de texto.
-- Escriba entre llaves `{...}` la descripción para cada parámetro de la herramienta. No olvide poner entre comillas dobles (`"`) tanto la clave como el valor de cada parámetro, y una coma (`,`) para separa cada parámetro.
-- Opcionalmente, agregue una descripción general del algoritmo, el nombre del creador del algoritmo o de la ayuda.
+- Escriba entre llaves `{...}` la descripción para cada parámetro de la herramienta. No olvide poner entre comillas dobles (") tanto a la clave como al valor de cada parámetro, y una coma (`,`) para separar cada parámetro.
+- Opcionalmente, agregue una descripción general del algoritmo, el nombre del creador del algoritmo y el nombre del creador de la documentación de la herramienta.
 - Guarde los cambios y visualice el resultado abriendo el script desde la caja de herramientas de _Processing_
 
 {{% notice warning "🤞 Ayuda" %}}
@@ -147,12 +148,13 @@ Haz clic para mostrar el contenido de ayuda.
 
     ```json
     {
-    "Capa": "Una capa vectorial que contenga la variable a graficar",
-    "Campo": "Un campo de la capa de entrada. Este será la <em>variable</em> a graficar",
-    "Transform": "Opcional. Se puede elegir un método de transformación de la variable.",
-    "ALG_DESC": "Esta herramienta permite crear un gráfico que combina un violín y un boxplot, usando <code style='color: #dfdfdf;background-color: #2e393d;'>ggplot2</code>",
+    "Capa": "Capa vector de puntos de los cuales obtendrá el punto central", 
+    "Centro_espacial": "Selección. Elija el tipo de <em>centro espacial</em> que desee obtener.", 
+    "Campo_de_pesos": "Optional. Un campo numérico de la <code>Capa</code> que va a servir como variable de ponderación.",
+    "Punto_central": "Ruta y nombre de la capa de salida",
+    "ALG_DESC": "Esta herramienta permite derivar el punto central de una capa de puntos.",
     "ALG_CREATOR": "<Nombre del creador>",
-    "ALG_HELP_CREATOR": "Instructores",
+    "ALG_HELP_CREATOR": "<Nombre del creador de la ayuda>",
     "ALG_VERSION": "0.0.1"
     }
     ```
@@ -160,25 +162,18 @@ Haz clic para mostrar el contenido de ayuda.
 - Opción 2. Escribir la documentación en el mismo script (solo a partir de la versión 3.2.0 del plugin).
 
     ``` html
-    #' Capa: Una capa vectorial que contenga la variable a graficar
-    #' Campo: Un campo de la capa de entrada. Este será la <em>variable</em> a graficar
-    #' Transform: Opcional. Se puede elegir un método de transformación de la variable.
-    #' ALG_DESC: Esta herramienta permite crear un gráfico que combina un violín y un boxplot,
-    #' :usando <code style="padding:2px;color: #dfdfdf;background-color: #2e393d;">ggplot2</code>
+    #' Capa: Capa vector de puntos de los cuales obtendrá el punto central
+    #' Centro_espacial: Selección. Elija el tipo de <em>centro espacial</em> que desee obtener.
+    #' Campo_de_pesos: Opcional. Un campo numérico de la <code>Capa</code> 
+    #'               : que va a servir como variable de ponderación.
+    #' Punto_central: Ruta y nombre de la capa de salida.
+    #' ALG_DESC: Esta herramienta permite derivar el <em>punto central</em> a 
+    #'         : partir del conjunto de coordenadas en una capa de puntos.
     #' ALG_CREATOR: <Nombre del creador>
-    #' ALG_HELP_CREATOR: Instructores
+    #' ALG_HELP_CREATOR: <Nombre del creador de la ayuda>
     #' ALG_VERSION: 0.0.1
     
-    ##Taller UseR!2022=group
-    ##violinandboxplot=name
-    ##Gráfico de violin y boxplot=display_name
-    ##Capa=vector
-    ##Campo=Field Capa
-    ##Transform=optional enum boxcox;exp;log;log10;log1p;log2;logit;probability;probit;pseudo_log;reciprocal;reverse;sqrt
-    ##output_plots_to_html
-    
-    library(ggplot2)
-    ... < RESTO DEL CUERPO >
+    <!-- RESTO DEL CUERPO -->
     
     ```
 
