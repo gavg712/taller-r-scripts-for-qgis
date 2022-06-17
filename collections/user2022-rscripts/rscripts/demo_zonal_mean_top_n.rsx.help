@@ -1,0 +1,10 @@
+{
+"Raster": "Capa raster",
+"Zonas": "Capa vector de polígonos que representan las zonas",
+"Zonas_Ids": "Campo de la capa de <em>Zonas</em>",
+"Top_N": "Valor numérico entero que define los n de valores más altos. ",
+"Zonal": "Salida vectorial con el promedio de las <em>n</em> valores más altos",
+"ALG_CREATOR": "@gavg712",
+"ALG_DESC": "Calcular el promedio zonal de los N valores más altos de un raster.",
+"ALG_HELP_CREATOR": "@gavg712"
+}
