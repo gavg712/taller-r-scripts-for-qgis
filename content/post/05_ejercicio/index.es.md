@@ -131,7 +131,9 @@ El cuerpo del script no ha cambiado en nada, seguimos manteniendo los nombres de
 
 ### Ejercicio
 
-Ahora es tiempo de practicar. Tu tarea será cambiar una o varias líneas del script "Zonal mean from top N" disponible en los scripts del taller. 
+Ahora es tiempo de practicar. Tu tarea será cambiar una o varias líneas del script _"Zonal mean from top N"_ disponible en los scripts del taller. Los datos del ejemplo están disponibles gracias a la amable contribución de Castillo, L. (2022)[^2].
+
+[^2]: REFERENCIA: Castillo, Luis. (2022). Altura de los árboles. _Post-procesamiento de datos de la primera cobertura LIDAR (año 2009), Cabeza de Fraile, Valencia. España (1a ed.)_ [Raster]. Centro de Nacional de Información Geográfica de España.
 
 {{% notice tip "👌 Tip!" %}}
 Si has instalado correctamente el plugin [Qgis Resources Sharing](../../extras) y el repositorio del taller, deberías tener los scripts visibles en la caja de herramientas de processing. 
@@ -149,7 +151,6 @@ Puedes seguir los siguientes pasos:
     - Línea 8: [output vector](https://qgis.org/pyqgis/master/core/QgsProcessingParameterVectorDestination.html)
 4. Agrega una línea de documentación con la clave `#' ALG_CREATOR:<Tu nombre>`, para saber quien hizo la modificación
 5. Cuando hayas terminado de editar guarda los cambios y prueba tu herramienta.
-
 
 {{% notice warning "🤞 Ayuda" %}}
 El contenido a continuación ha sido ocultado intencionalmente. Despliégalo solo si sientes que no puedes realizar el ejercicio por tu cuenta.
