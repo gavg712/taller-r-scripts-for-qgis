@@ -1,0 +1,6 @@
+{
+"ALG_DESC": "Herramienta para generar datos de prueba para los ejercicios del tutorial <a href='https://user2022.r-project.org/program/tutorials/#programaci%C3%B3n-de-scripts-en-r-para-el-procesamiento-de-qgis'><b>UseR!2022</b></a>",
+"ALG_CREATOR": "@gavg712",
+"ALG_HELP_CREATOR": "@gavg712",
+"Directorio_de_trabajo": "Seleccione el directorio de trabajo. Este script creará un directorio <b>'data'</b> en el cual se dispondrán varios ficheros de datos vectoriales y raster. El espacio requerido en disco es menos de 2MB"
+}
