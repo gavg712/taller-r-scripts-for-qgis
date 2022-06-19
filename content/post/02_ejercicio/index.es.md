@@ -78,13 +78,13 @@ Sirven para definir el comportamiento general del script. Estos parámetros se c
 
 #### Parámetros de entrada
 
-Estas líneas de parámetros especifican la apariencia de la interfaz del script. A partir de la estructura básica `##nombre_parametro=tipo [valor_por_defecto/desde_variable]` podemos destacar que `nombre_parámetro` será el nombre del objeto que contenga esa variable en la sesión de R. Mientras que `tipo` será el tipo de datos de entrada, de los posibles tipos de entrada (vector, raster, table, number, string, boolean, Field).
+Estas líneas de parámetros especifican la apariencia de la interfaz del script. A partir de la estructura básica `##nombre_parametro=tipo [valor_por_defecto/desde_variable]` podemos destacar que `nombre_parámetro` será el nombre del objeto que contenga esa variable en la sesión de R. Mientras que `tipo` será el tipo de datos de entrada, de los posibles tipos de entrada (vector, raster, point, number, string, boolean, Field).
 
 |Parámetro      |Valor por defecto|Desde variable      |
 |:--------------|:---------------:|:------------------:|
 |`vector`       |Si               |No                  |
 |`raster`       |Si               |No                  |
-|`table`        |Si               |No                  |
+|`point`        |Si               |No                  |
 |`number`       |Si               |No                  |
 |`string`       |Si               |No                  |
 |`boolean`      |Si               |No                  |
