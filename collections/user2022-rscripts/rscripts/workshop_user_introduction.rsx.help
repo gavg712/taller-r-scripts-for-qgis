@@ -1,0 +1,8 @@
+{
+"ALG_DESC": "<p>Herramienta usaremos para auto presentarnos al resto del grupo. </p><div style='background-color: #e9b96e;border: 1px solid steelblue;'><p style='color: steelblue;padding: 5px 0px;'>Los datos registrados <b>solo serán usados durante este taller</b>. Conscientes de su derecho a la privacidad, usted no está obligado enviar ninguna información. Por favor, siéntase libre de responder como usted desee.</p><p>Si al final decide responder, sepa que el script recogerá la siguiente información<p><ul><li>Fecha y Hora de la respuesta (automático)</li><li>Versión de QGIS (automático)</li><li>Lenguaje de QGIS (automático)</li><li>Tipo de sistema opertativo (automático)</li><li>Ubicación (Respuesta usuario)</li><li>Nombre (Respuesta usuario)</li><li>Razón de por qué tomó el tutorial (Respuesta usuario)</li></ul><p>Los datos serán visualizados durante el taller en la sección de presentación del tutorial</p></div>",
+"ALG_CREATOR": "gavg712",
+"ALG_HELP_CREATOR": "gavg712",
+"desde": "Seleccione una ubicación en el mapa. Puede hacerlo intereactivamente usando el botón de los tres puntos junto a la casilla.",
+"nombre": "Escriba el nombre con el que le guste ser llamado",
+"porque": "Escriba sus razones como mejor le parezca."
+}
