@@ -5,7 +5,7 @@ date: 2022-05-20T06:00:00-05:00
 tags: ["R","QGIS"]
 ---
 
-## Introduction
+## Introducción
 
 La documentación del software y scripts  es una tarea bastante demandada por los usuarios. Las mejores herramientas de software en cualquier campo tienen particular énfasis en la documentación para el usuario. Así se aseguran que la herramienta se usada por una mayor cantidad de personas.
 
@@ -21,7 +21,7 @@ Sabemos que un script de R para *QGIS Processing* tiene dos partes fundamentales
 
 ### Ficheros `rsx.help`
 
-El archivo de ayuda debe estar ubicado en el mismo directorio y tener el nombre del script, pero con extensión `.rsx.help`. El contenido de este archivo es un objeto JSON con las descripciones de los parámetros. 
+El archivo de ayuda debe estar ubicado en el mismo directorio y tener el nombre del script, pero con extensión `.rsx.help`. El contenido de este archivo es un objeto JSON con las descripciones de los parámetros usados en el script. 
 
 Por ejemplo, supongamos que hemos añadido un fichero script llamado `simple_scatterplot.rsx` con el siguiente contenido:
 
@@ -124,14 +124,14 @@ En las líneas de ayuda también se pueden introducir pequeños elementos de có
 
 ![](help-section-3.png)
 
-## Ejercicio
+## Ejercicio: Documentando script de centralidad espacial
 
 Ahora practicaremos documentando el script del ejercicio anterior. Usted puede elegir el texto descriptivo que mejor le parezca para cada parámetro del script. Puede incluir también uno o varios parámetros especiales, según le convenga. Empecemos!
 
 - Primero en función de qué versión del plugin **_Processing R Provider_** tiene instalado, decida usted qué tipo de formato va a usar para su script. _Recuerde que el uso de **líneas de documentación** en el script solo está disponible a partir de la versión 3.2.0 del plugin._
 - Si va a crear un fichero, abra un fichero de texto nuevo y guárdelo en la carpeta de rscripts del plugin.
 - Abra ese fichero en modo de edición con cualquier editor de texto.
-- Escriba entre llaves `{...}` la descripción para cada parámetro de la herramienta. No olvide poner entre comillas dobles (") tanto a la clave como al valor de cada parámetro, y una coma (`,`) para separar cada parámetro.
+- Escriba entre llaves `{...}` la descripción para cada parámetro de la herramienta. No olvide poner entre comillas dobles (") tanto a la clave como al valor de cada parámetro, y una coma (,) para separar cada parámetro.
 - Opcionalmente, agregue una descripción general del algoritmo, el nombre del creador del algoritmo y el nombre del creador de la documentación de la herramienta.
 - Guarde los cambios y visualice el resultado abriendo el script desde la caja de herramientas de _Processing_
 

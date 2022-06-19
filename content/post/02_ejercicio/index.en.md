@@ -226,7 +226,7 @@ When you are ready:
     </details>
 - Finally save your script in the script directory defined in the plug-in configuration.
 
-{{% notice warning "🤞 Ayuda" %}}
+{{% notice warning "🤞 Hint" %}}
 The content below has been intentionally hidden. Unfold it only if you feel you cannot perform the exercise on your own.
 {{% /notice %}}
 
