@@ -18,7 +18,8 @@ fls <- c("arboles_alturas_2009.bib",
          "parcelas.gpkg",
          "vias_acceso.gpkg",
          "peligro.tif",
-         "peligro.qml")
+         "peligro.qml",
+         "presentacion.qgz")
 lapply(fls,  function(x){
     curl::curl_download(
         url = file.path(repo_url, x), 
