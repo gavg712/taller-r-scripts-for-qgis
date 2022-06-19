@@ -16,9 +16,9 @@ Es un software de Sistema de Información Geográfica (SIG) libre y de código a
 
 - Presenta una interfaz gráfica de usuario (`GUI`) muy amigable.
 - Interoperabilidad con otros software open source (`SAGA`, `GRASS`, `R`, entre otros)
-- Proyecto oficial de la Open Source Geospatial Foundation (`OSGeo`).
-- Se puede usar el multiples sistemas operativos como una distribución de GNU/Linux, Unix, MacOSX, Windows y Android.
-- Soporta multiples formatos en datos vectoriales y raster (`GDAL`).
+- Es un proyecto oficial de la Open Source Geospatial Foundation (`OSGeo`).
+- Se puede usar el múltiples sistemas operativos como una distribución de GNU/Linux, Unix, MacOSX, Windows y Android.
+- Soporta múltiples formatos en datos vectoriales y raster (`GDAL`).
 - Presenta una variedad de plugins para temáticas específicas.
     <table class="default" align="center">
       <tr align="center">
@@ -49,7 +49,7 @@ Actualmente, se lanza una nueva versión de QGIS cada cuatro meses; sin embargo 
 
 ### 1.4 ¿Qué es R?
 
-Es un lenguaje de programación interpretado de codigo abierto multiplataforma que permite hacer diferentes tipos de análisis estadísticos, desde importar datos, ordenarlos, modelarlos y visualizarlo mediante gráficos de alta calidad e incluir en informes académicos de manera científica ([Hadley Wickham y Garrett Grolemund,2017](https://r4ds.had.co.nz/index.html)).
+Es un lenguaje de programación interpretado de código abierto multi-plataforma que permite hacer diferentes tipos de análisis estadísticos, desde importar datos, ordenarlos, modelar y visualizar mediante gráficos de alta calidad, e incluir en informes académicos de manera científica ([Hadley Wickham y Garrett Grolemund,2017](https://r4ds.had.co.nz/index.html)).
 
 <table class="default" align="center">
  <tr align="center">
@@ -89,7 +89,7 @@ Rstudio es un entorno de desarrollo integrado (IDE) para R. Incluye una consola,
 
 En los últimos años la comunidad de `R spatial` ha tenido un gran impacto en el big data, especialmente con el procesamiento de datos espaciales, tanto en formato vectorial (puntos, líneas, polígonos, etc.) como en formato raster (imágenes de satélite, drones, etc.).
 
-Hoy en día, existen muchos paquetes dentro de R espacialmente para trabajar un aspecto clave dentro del análisis espacial, desde la evaluación de un test de Moran hasta la identificación de clústeres, regresión geográfica ponderada, pre y post procesamiento de imágenes de satélite o de drones, entre otros; también existe un gran potencial dentro de las visualizaciones, desde simples gráficos y/o mapas estáticos, hasta dinámicos e interactivas, incluyendo visualizaciones 3D.
+Hoy en día, existen muchos paquetes dentro de R, especialmente para trabajar aspectos claves dentro del análisis espacial; desde la evaluación de un test de Moran hasta la identificación de clústeres, regresión geográfica ponderada, pre y post procesamiento de imágenes de satélite o de drones, entre otros. También existe un gran potencial dentro de las visualizaciones, desde simples gráficos y/o mapas estáticos, hasta dinámicos e interactivas, incluyendo visualizaciones 3D.
 
 
 <table class="default" align="center">
