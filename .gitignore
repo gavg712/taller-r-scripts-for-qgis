@@ -3,3 +3,8 @@
 .hugo_build*
 documentos
 *.Rproj
+rscripts.bkp
+R/encuesta
+R/backup_rscripts.R
+*.gpkg-shm
+*.gpkg-wal
