@@ -9,6 +9,18 @@
   weight = -110
 
 [[main]]
+  name = "Processing R Provider"
+  url = "installation"
+  weight = 1
+  parent = "Installation"
+
+[[main]]
+  name = "Dependencies"
+  url = "requerimientos"
+  weight = 2
+  parent = "Installation"
+  
+[[main]]
   name = "Extras"
   url = "extras"
   weight = -108
