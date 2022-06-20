@@ -177,35 +177,35 @@ Cuando estés listo:
     
     ``` r
     # Funciones y objetos para calcular punto medio ----
-      nms <- c(mean.center = "Mean center", 
-               median.center = "Median center", 
-               central.feature = "Central feature", 
-               weighted.mean.center = "Weighted mean center")
+    nms <- c(mean.center = "Mean center", 
+             median.center = "Median center", 
+             central.feature = "Central feature", 
+             weighted.mean.center = "Weighted mean center")
+    
+    mean_mc <- function(w = NULL){
+      if(is.null(w) && Centro_espacial == "weighted.mean.center")
+        warning("Weights field is null. Mean center instead!")
       
-      mean_mc <- function(w = NULL){
-          if(is.null(w) && Centro_espacial == "weighted.mean.center")
-              warning("Weights field is null. Mean center instead!")
-          
-          if(!is.null(w)) {
-              m <- apply(xy, 2, weighted.mean, w = w)
-          } else {m <- apply(xy, 2, mean)}
-          st_point(m)
+      if(!is.null(w)) {
+        m <- apply(xy, 2, weighted.mean, w = w)
+      } else {m <- apply(xy, 2, mean)}
+      st_point(m)
       }
-      
-      median_mc <- function() st_point(apply(xy, 2, median))
-      
-      central_feature <- function(){
-          d <- st_distance(Capa)
-          d <- apply(d, 1, sum)
-          st_point(xy[which.min(d),])
-      }
-      
-      all_features <- function(){
-          if(!is.null(Campo_de_pesos))
-              st_sfc(mean_mc(), median_mc(), central_feature(), mean_mc(Campo_de_pesos))
-          else 
-              st_sfc(mean_mc(), median_mc(), central_feature())
-      }
+    
+    median_mc <- function() st_point(apply(xy, 2, median))
+    
+    central_feature <- function(){
+      d <- st_distance(Capa)
+      d <- apply(d, 1, sum)
+      st_point(xy[which.min(d),])
+    }
+    
+    all_features <- function(){
+      if(!is.null(Campo_de_pesos))
+        st_sfc(mean_mc(), median_mc(), central_feature(), mean_mc(Campo_de_pesos))
+      else 
+        st_sfc(mean_mc(), median_mc(), central_feature())
+    }
     
     # Calcular punto medio ----
       # extraer matriz de coordenadas de los puntos ----
