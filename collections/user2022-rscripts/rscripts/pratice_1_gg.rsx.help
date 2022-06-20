@@ -1,0 +1,10 @@
+{
+"Layer": "Capa de entrada",
+"Pesos" : "Opcional. Campo de pesos para ponderación",
+"Spatial_center" : "Selección simple. Si la selección es <code>all</code> se generarán todos los puntos centrales disponibles.",
+"Central_point" : "Salida. Una capa de puntos.",
+"ALG_DESC": "<p>This file creates a <span style='text-decoration: underline;'>simple scatterplot</span> from two fields in a vector layer</p><p>Github repository: <a href='https://github.com/gavg712/taller-r-scripts-for-qgis'>Taller UseR!2022 repo</a>",
+"ALG_CREATOR": "<a href='https://github.com/nyalldawson'>@nyalldawson</a>",
+"ALG_HELP_CREATOR": "@gavg712",
+"ALG_VERSION": "0.0.1"
+}
