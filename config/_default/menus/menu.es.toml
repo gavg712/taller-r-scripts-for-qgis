@@ -26,15 +26,21 @@
   weight = -108
   
 [[main]]
+  name = "Información adicional"
+  url = "enlaces"
+  weight = 1
+  parent = "Extras"
+
+[[main]]
   name = "Qgis resource sharing"
   url = "extras"
-  weight = 1
+  weight = 2
   parent = "Extras"
   
 [[main]]
   name = "Repositorio para compartir"
   url = "repositorio"
-  weight = 2
+  weight = 3
   parent = "Extras"
 
 [[main]]
