@@ -13,7 +13,7 @@ En los siguientes ejemplos veremos todas las configuraciones que deberías de co
 Para poder replicar los siguientes ejemplos,  es necesario que descargues los
 siguientes datos: 
  - [📥 Peligro](https://github.com/gavg712/taller-r-scripts-for-qgis/raw/main/data/peligro.tif)
- - [📥 Peligro qml]()
+ - [📥 Peligro qml](https://github.com/gavg712/taller-r-scripts-for-qgis/raw/main/data/peligro-qml.rar)
  - [📥 Vias](https://github.com/gavg712/taller-r-scripts-for-qgis/raw/main/data/vias_acceso.gpkg)
 {{% /notice %}}
 
