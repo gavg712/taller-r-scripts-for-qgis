@@ -41,6 +41,5 @@ La siguiente imagen muestra la configuración que se debería de tener si deseas
 
 <img src="https://user-images.githubusercontent.com/23284899/173711302-8404a8ac-ed9b-4356-8e60-9453a0c7d9d3.png" width='100%'/>
 
-## 🔵 **4. Configuración en Mac OS**
 
 
