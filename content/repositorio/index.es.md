@@ -7,7 +7,7 @@ tags:
 title: Repositorio para compartir 
 ---
 
-El repositorio del taller está configurado para ser usado junto a [QGIS Resource Sharing](https://qgis-contribution.github.io/QGIS-ResourceSharing/) para instalar los Scripts R para QGIS. Este usaremos como repositorio para compartir las herramientas desarrolladas por los demás participantes. La configuración de este repositorio se explica en la entrada sobre [QGIS Resource Sharing](../extras).`
+El repositorio del taller está configurado para ser usado junto a [QGIS Resource Sharing](https://qgis-contribution.github.io/QGIS-ResourceSharing/) para instalar los Scripts R para QGIS. Este usaremos como repositorio para compartir las herramientas desarrolladas por los demás participantes. La configuración de este repositorio se explica en la entrada sobre [QGIS Resource Sharing](../extras).
 
 Les invitamos a compartir sus herramientas mediante una PR a la rama principal del repositorio en GitHub. Para lo cual por favor tomar en consideración las siguientes instrucciones:
 
