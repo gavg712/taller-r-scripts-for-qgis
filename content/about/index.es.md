@@ -25,8 +25,8 @@ Gabriel Gaona es un científico de datos interesado en Análisis espacial para m
 Antony Barja es un investigador en proceso de formación dentro de Health Innovation Lab, interesado en el análisis espacial de datos enfocados a enfermedades infecciosas. Sus trabajos actuales y publicaciones involucran análisis espaciales en riesgos por fenómenos naturales, ecología del paisaje y salud. Tiene más de 3 años de experiencia manejando diversas tecnologías libres y de código abierto orientadas al aspecto espacial.
 
 **Intereses:** 
- - infectious diseases and global health research
- - Health Data Science
- - Geospatial modeling & vi
+ - Ciencias y sistemas de información geográfica
+ - Enfermedades infecciosas 
+ - Geografía computacional
 
 ---
