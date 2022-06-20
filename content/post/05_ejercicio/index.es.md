@@ -1,18 +1,18 @@
 ---
-title: "5. Configuración avanzada"
+title: "5. Especificación avanzada"
 author: "Gabo Gaona & Antony Barja"
 date: 2022-05-20T04:00:00-05:00
 tags: ["R","QGIS"]
 ---
 
-### Introduction
+### Introducción
 
-La configuración avanzada es un nueva característica de las versiones 3.x del plugin.
+La especificación avanzada es un nueva característica de las versiones 3.x del plugin.
 Este tipo de configuración tiene una lógica diferente a la forma habitual de especificar los parámetros, porque la estructura es distinta.
 
 En esta parte del tutorial nos dedicaremos a estudiar las ventajas de usar la especificación avanzada en un script
 
-Comencemos!
+¡Comencemos!
 
 ### Estructura y lógica
 
@@ -22,7 +22,7 @@ Así como en la especificación normal las líneas de parámetros tenían una es
 ##QgsProcessingParameter<Tipo>|Nombre|Descripción|<Otros Argumentos separados pipe>
 ```
 
-Para entender esta estructura debemos conocer la API de QGIS, ya sea la [versión de C](https://api.qgis.org/api) o la de [Python](https://qgis.org/pyqgis/master/). Lo que debemos buscar son los detalles de las clases `QgsProcessingParameter<tipo>`: A continuación una tabla con las clases QGIS y el correspondiente parámetro de entrada de _Processing R_
+Comienza por dos signos de numeral (`##`), seguido del nombre de la clase del parámetro en la API de QGIS (`QgsProcessingParameter*`) y los argumentos de la clase separados por una barra vertical (`|`). Para entender esta estructura debemos conocer la API de QGIS, ya sea la [versión de C](https://api.qgis.org/api) o la de [Python](https://qgis.org/pyqgis/master/). Lo que debemos buscar son los detalles de las clases `QgsProcessingParameter<tipo>`: A continuación una tabla con las clases QGIS y el correspondiente parámetro de entrada de _Processing R_
 
 |Parámetro      |Tipo QGIS API   |
 |:--------------|:---------------|
@@ -94,7 +94,7 @@ Max <- max(Layer[[Field]])
 Summary <- paste(Min, "to", Max, sep = " ")
 ```
 
-El reemplazo de la línea tres es `##QgsProcessingParameterFeatureSource|Layer|Capa de entrada` para la cual solo se ha definido el tipo de parámetro, el nombre de la variable y la descripción. Pero si te fijas en la API, esa clase tiene cinco argumentos ¿Qué pasó con los demás?.
+El reemplazo de la línea tres es `##QgsProcessingParameterFeatureSource|Layer|Capa de entrada` para la cual solo se ha definido el tipo de parámetro, el nombre de la variable y la descripción. Pero si te fijas en la API, esa clase tiene cinco argumentos, ¿Qué pasó con los demás?.
 
 ```python
 QgsProcessingParameterFeatureSource(
